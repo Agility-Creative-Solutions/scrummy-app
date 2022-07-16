@@ -3,10 +3,11 @@
   "version": "2.1.0",
   "scripts": {
     "dev": "next dev",
-    "build": "run-s clean build export",
+    "build": "next build",
     "start": "next start -p $PORT",
     "build-stats": "cross-env ANALYZE=true npm run build",
     "export": "next export",
+    "build-prod": "run-s clean build export",
     "clean": "rimraf .next out",
     "lint": "next lint",
     "check-types": "tsc --noEmit --pretty",
