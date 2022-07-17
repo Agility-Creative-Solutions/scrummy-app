@@ -1,5 +1,5 @@
 /* eslint-disable import/no-extraneous-dependencies */
-// setup staging branch
+// setup staging branch with a PR
 const withBundleAnalyzer = require('@next/bundle-analyzer')({
   enabled: process.env.ANALYZE === 'true',
   openAnalyzer: false,
