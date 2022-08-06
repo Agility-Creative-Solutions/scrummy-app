@@ -12,7 +12,7 @@ const DesignSystem = () => (
         <Input type="text" onChange={() => console.log('Lorem')} />
         <Input type="text" onChange={() => console.log('Lorem')} />
       </div>
-      <div className="flex-column flex items-center justify-center gap-5">
+      <div className="flex flex-col items-center justify-center gap-5">
         <Button title="Test Button" buttonType="primary" />
         <Button icon="MdInput" buttonType="primary" />
         <Button title="Test Button" buttonType="secondary" />
