@@ -3,11 +3,11 @@ import React from 'react';
 import useMdIcons from '@/hooks/useMdIcons';
 
 export type InputProps = {
-  icon: string;
+  icon?: string;
   type: string;
   onChange: () => void;
-  placeholder: string;
-  floatingPlaceholder: boolean;
+  placeholder?: string;
+  floatingPlaceholder?: boolean;
   label?: string;
   required?: boolean;
   name?: string;
@@ -24,7 +24,7 @@ const Input: React.FC<InputProps> = ({
   name,
   value,
 }) => {
-  const { Icon } = useMdIcons(icon);
+  const { Icon } = useMdIcons(icon ?? '');
 
   return (
     <div className="relative">
