@@ -1,11 +1,12 @@
 import cx from 'classnames';
-import type { ReactNode } from 'react';
 import React from 'react';
+
+import useMdIcons from '@/hooks/useMdIcons';
 
 export type ButtonProps = {
   href?: string;
   title?: string;
-  icon?: ReactNode;
+  icon?: string;
   isLoading?: boolean;
   fullWidth?: boolean;
   disabled?: boolean;
@@ -22,14 +23,19 @@ const Button: React.FC<ButtonProps> = ({
   fullWidth,
   buttonType,
 }) => {
+  const { Icon } = useMdIcons(icon ?? 'MdInput');
+
   return (
     <a
-      className={cx('btn button inline-block', {
-        'btn--primary': buttonType === 'primary',
-        'btn--secondary': buttonType === 'secondary',
-        'btn--tertiary': buttonType === 'tertiary',
-        'w-full': fullWidth,
-      })}
+      className={cx(
+        'btn button inline-block cursor-pointer border-none px-5 py-2 rounded-full my-auto',
+        {
+          'bg-scrummyOrange text-white': buttonType === 'primary',
+          'bg-scrummyPink text-white': buttonType === 'secondary',
+          'bg-scrummyGreen text-white': buttonType === 'tertiary',
+          'w-full': fullWidth,
+        }
+      )}
       onClick={onClick}
       href={href}
     >
@@ -40,14 +46,10 @@ const Button: React.FC<ButtonProps> = ({
       )}
       {!isLoading && (
         <>
-          {icon && !title && <span>{icon}</span>}
-          {title && !icon && <span>{title}</span>}
-          {title && icon && (
-            <div className="flex gap-5">
-              <span>{icon}</span>
-              <span>{title}</span>
-            </div>
-          )}
+          <div className="flex items-center justify-center gap-5 text-center">
+            {icon && <span className="text-xl">{<Icon />}</span>}
+            {title && <span className="text-base">{title}</span>}
+          </div>
         </>
       )}
     </a>
