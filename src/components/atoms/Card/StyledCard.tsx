@@ -8,7 +8,7 @@ export type StyledCardProps = {
 
 const StyledCard: React.FC<StyledCardProps> = ({ children }) => {
   return (
-    <div className={cx('p-3 bg-dark-100 text-light-100 rounded-lg w-full')}>
+    <div className={cx('p-5 bg-dark-100 text-light-100 rounded-lg w-full')}>
       {children}
     </div>
   );
