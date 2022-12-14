@@ -16,11 +16,26 @@ module.exports = {
     },
     extend: {
       colors: {
-        scrummyOrange: '#ee6829',
-        scrummyPink: '#ff8180',
-        scrummyGreen: '#27a460',
-        scrummyYellow: '#FFC960',
-        scrummyRed: '#E9294D',
+        scrummyOrange: {
+          500: '#ee6829',
+          700: '#b53800',
+        },
+        scrummyPink: {
+          500: '#ff8180',
+          700: '#c85154',
+        },
+        scrummyGreen: {
+          500: '#27a460',
+          700: '#007435',
+        },
+        scrummyYellow: {
+          500: '#E5AD40',
+          700: '#c99830',
+        },
+        scrummyRed: {
+          500: '#E9294D',
+          700: '#af0026',
+        },
         scrummyLightGreen: '#E1FFDF',
         light: {
           100: '#FCFCFF',
