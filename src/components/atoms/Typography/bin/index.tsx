@@ -1,0 +1,1 @@
+export { TypographyMap } from './TypographyMap';
