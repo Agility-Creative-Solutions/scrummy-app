@@ -3,6 +3,8 @@ import React from 'react';
 
 import useMdIcons from '@/hooks/useMdIcons';
 
+import Loader from '../Loader';
+
 export type ButtonProps = {
   href?: string;
   title?: string;
@@ -11,7 +13,7 @@ export type ButtonProps = {
   fullWidth?: boolean;
   disabled?: boolean;
   onClick?: () => void;
-  buttonType?: 'primary' | 'secondary' | 'tertiary';
+  buttonType?: 'primary' | 'pink' | 'success' | 'warning' | 'danger' | 'glass';
 };
 
 const Button: React.FC<ButtonProps> = ({
@@ -28,23 +30,24 @@ const Button: React.FC<ButtonProps> = ({
   return (
     <a
       className={cx(
-        'btn button inline-block cursor-pointer border-none px-5 py-2 rounded-full my-auto',
+        'btn button cursor-pointer border-none px-5 py-3 rounded-xl my-auto ease-in duration-200 h-12 inline-flex items-center active:shadow-xl hover:shadow-md',
         {
-          'bg-scrummyOrange text-white': buttonType === 'primary',
-          'bg-scrummyPink text-white': buttonType === 'secondary',
-          'bg-scrummyGreen text-white': buttonType === 'tertiary',
+          'bg-scrummyOrange-500 text-white': buttonType === 'primary',
+          'bg-scrummyPink-500 text-white': buttonType === 'pink',
+          'bg-scrummyGreen-500 text-white': buttonType === 'success',
+          'bg-scrummyYellow-500 text-white': buttonType === 'warning',
+          'bg-scrummyRed-500 text-white': buttonType === 'danger',
+          'bg-transparent text-black active:shadow-lg': buttonType === 'glass',
           'w-full': fullWidth,
+          'w-fit': !fullWidth,
         }
       )}
       onClick={onClick}
       href={href}
     >
-      {isLoading && (
-        <div className="btn__loader">
-          <div className="btn__loader__spinner"></div>
-        </div>
-      )}
-      {!isLoading && (
+      {isLoading ? (
+        <Loader />
+      ) : (
         <>
           <div className="flex items-center justify-center gap-5 text-center">
             {icon && <span className="text-xl">{<Icon />}</span>}
