@@ -30,7 +30,7 @@ const Button: React.FC<ButtonProps> = ({
   return (
     <a
       className={cx(
-        'btn button cursor-pointer border-none px-5 py-3 rounded-xl my-auto ease-in duration-200 h-12 inline-flex items-center active:shadow-xl hover:shadow-md',
+        'btn button px-5 py-3 rounded-xl my-auto ease-in duration-200 h-12 inline-flex items-center active:shadow-xl hover:shadow-md',
         {
           'bg-scrummyOrange-500 text-white': buttonType === 'primary',
           'bg-scrummyPink-500 text-white': buttonType === 'pink',
