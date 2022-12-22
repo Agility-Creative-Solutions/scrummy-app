@@ -4,7 +4,7 @@ import React from 'react';
 import type { IconBaseProps } from 'react-icons/lib';
 
 export type IconProps = {
-  size?: number,
+  size?: number;
   href?: string;
   onClick?: () => void;
   icon?: IconBaseProps ;

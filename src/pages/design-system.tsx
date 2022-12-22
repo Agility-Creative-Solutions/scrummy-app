@@ -3,6 +3,7 @@ import * as FAIcons from 'react-icons/fa';
 import { Button, Input } from '@/components';
 import Card from '@/components/atoms/Card';
 
+import CheckBox from '../components/atoms/CheckBox';
 import Icon from '../components/atoms/Icon';
 
 const DesignSystem = () => (
@@ -20,7 +21,6 @@ const DesignSystem = () => (
       </div>
       <div>
         <h4>Buttons</h4>
-
         <div className="flex flex-col gap-5">
           <Button title="Full Width Button" fullWidth buttonType="primary" />
           <div className="flex gap-5">
@@ -48,6 +48,13 @@ const DesignSystem = () => (
             <Icon iconType="success" icon={<FAIcons.FaRegCopy size={20} />} />
             <Icon iconType="warning" icon={<FAIcons.FaRegCopy size={20} />} />
             <Icon iconType="danger" icon={<FAIcons.FaRegCopy size={20} />} />
+          </div>
+          <div>
+            <h4>Checkbox</h4>
+            <div>
+              <CheckBox label={'testando'} />
+              <CheckBox label={'testando'} />
+            </div>
           </div>
         </div>
       </div>
