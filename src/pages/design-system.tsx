@@ -5,6 +5,7 @@ import Card from '@/components/atoms/Card';
 
 import CheckBox from '../components/atoms/CheckBox';
 import Icon from '../components/atoms/Icon';
+import RadioButton from '../components/atoms/RadioButton';
 
 const DesignSystem = () => (
   <div style={{ backgroundColor: '#e3e3e3', height: '100vh', padding: 20 }}>
@@ -52,8 +53,15 @@ const DesignSystem = () => (
           <div>
             <h4>Checkbox</h4>
             <div>
-              <CheckBox label={'testando'} />
-              <CheckBox label={'testando'} />
+              <CheckBox />
+              <CheckBox />
+            </div>
+          </div>
+          <div>
+            <h4>Radio Button</h4>
+            <div>
+              <RadioButton id="1" value="1" name="test" />
+              <RadioButton id="2" value="2" name="test" />
             </div>
           </div>
         </div>

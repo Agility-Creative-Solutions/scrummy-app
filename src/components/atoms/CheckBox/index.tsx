@@ -2,13 +2,11 @@ import React from 'react';
 import { FaCheck } from 'react-icons/fa';
 
 export type CheckBoxProps = {
-  label?: string;
   id?: string;
   name?: string;
   value?: string;
   onChange?: () => void;
   checked?: boolean;
-  for?: string;
 };
 
 const CheckBox: React.FC<CheckBoxProps> = ({
