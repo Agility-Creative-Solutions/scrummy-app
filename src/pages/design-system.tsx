@@ -13,8 +13,8 @@ const DesignSystem = () => {
   const [checkboxTwo, setCheckboxTwo] = useState(true);
 
   return (
-    <div style={{ backgroundColor: '#e3e3e3', height: '100vh', padding: 20 }}>
-      <div className="grid grid-cols-3 gap-10 px-10">
+    <div style={{ backgroundColor: '#e3e3e3', padding: 20 }}>
+      <div className="grid grid-cols-1 gap-10 px-10 md:grid-cols-3">
         <div>
           <h4>Inputs</h4>
           <Input
@@ -29,7 +29,7 @@ const DesignSystem = () => {
           <h4>Buttons</h4>
           <div className="flex flex-col gap-5">
             <Button title="Full Width Button" fullWidth buttonType="primary" />
-            <div className="flex gap-5">
+            <div className="flex flex-wrap gap-5">
               <Button icon="MdInput" buttonType="primary" />
               <Button icon="MdInput" buttonType="success" />
               <Button isLoading buttonType="success" />
@@ -48,7 +48,7 @@ const DesignSystem = () => {
           </div>
           <div>
             <h4>Icons</h4>
-            <div className="flex gap-5">
+            <div className="flex flex-wrap  gap-5">
               <Icon
                 iconType="primary"
                 size={50}
@@ -59,7 +59,7 @@ const DesignSystem = () => {
               <Icon iconType="warning" icon={<FAIcons.FaRegCopy size={20} />} />
               <Icon iconType="danger" icon={<FAIcons.FaRegCopy size={20} />} />
             </div>
-            <div>
+            <div className="mt-6">
               <h4>Checkbox</h4>
               <div>
                 <CheckBox
