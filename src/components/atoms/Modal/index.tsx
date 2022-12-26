@@ -19,7 +19,7 @@ const modalStates = {
   },
   visible: {
     opacity: 1,
-    y: 10,
+    y: 20,
   },
   exit: {
     y: ' 100vh',
@@ -44,7 +44,7 @@ const Modal: React.FC<ModalProps> = ({
         variants={modalStates}
         className="w-1/3 pb-2"
       >
-        <Card title={title} subtitle={subtitle}>
+        <Card className="pb-7" title={title} subtitle={subtitle}>
           {children}
         </Card>
       </motion.div>

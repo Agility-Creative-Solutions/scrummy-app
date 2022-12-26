@@ -1,17 +1,27 @@
+import cx from 'classnames';
 import type { ReactNode } from 'react';
 import React from 'react';
 
-import StyledCard from './StyledCard';
-
 export type CardProps = {
+  className?: string;
   title?: string;
   subtitle?: string;
   children: ReactNode;
 };
 
-const Card: React.FC<CardProps> = ({ title, subtitle, children }) => {
+const Card: React.FC<CardProps> = ({
+  className,
+  title,
+  subtitle,
+  children,
+}) => {
   return (
-    <StyledCard>
+    <div
+      className={cx(
+        'p-5 bg-dark-100 text-light-100 rounded-lg w-full',
+        className
+      )}
+    >
       {(!!title || !!subtitle) && (
         <div className="pb-5">
           {title && <h4>{title}</h4>}
@@ -19,7 +29,7 @@ const Card: React.FC<CardProps> = ({ title, subtitle, children }) => {
         </div>
       )}
       {children}
-    </StyledCard>
+    </div>
   );
 };
 
