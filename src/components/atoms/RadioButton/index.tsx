@@ -30,7 +30,9 @@ const RadioButton: React.FC<RadioButtonProps> = ({
           className="h-[22px] w-[22px] cursor-pointer appearance-none rounded-full border-2  border-scrummyOrange-500 checked:bg-scrummyOrange-500"
         />
         <span className="absolute left-[8px] top-[8px] h-[6px] w-[6px] cursor-pointer rounded-full bg-[#e3e3e3]"></span>
-        <div className=" absolute bottom-[5px] left-5 pl-2">{label}</div>
+        {label && (
+          <span className=" absolute bottom-[5px] left-5 pl-2">{label}</span>
+        )}
       </label>
     </div>
   );

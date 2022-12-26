@@ -19,7 +19,7 @@ const CheckBox: React.FC<CheckBoxProps> = ({
   label,
 }) => {
   return (
-    <div className="flex flex-col justify-items-start">
+    <div className="flex cursor-pointer flex-col justify-items-start">
       <label htmlFor={id} className="relative">
         <input
           className="check-box-1 h-5 w-5 cursor-pointer appearance-none rounded border-2  border-scrummyOrange-500  checked:bg-scrummyOrange-500"

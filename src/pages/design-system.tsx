@@ -5,7 +5,7 @@ import { Button, Input } from '@/components';
 import Card from '@/components/atoms/Card';
 
 import CheckBox from '../components/atoms/CheckBox';
-import Icon from '../components/atoms/Icon';
+import IconButton from '../components/atoms/IconButton';
 import RadioButton from '../components/atoms/RadioButton';
 
 const DesignSystem = () => {
@@ -49,15 +49,11 @@ const DesignSystem = () => {
           <div>
             <h4>Icons</h4>
             <div className="flex flex-wrap  gap-5">
-              <Icon
-                iconType="primary"
-                size={50}
-                icon={<FAIcons.FaRegCopy size={20} />}
-              />
-              <Icon iconType="pink" icon={<FAIcons.FaRegCopy size={20} />} />
-              <Icon iconType="success" icon={<FAIcons.FaRegCopy size={20} />} />
-              <Icon iconType="warning" icon={<FAIcons.FaRegCopy size={20} />} />
-              <Icon iconType="danger" icon={<FAIcons.FaRegCopy size={20} />} />
+              <IconButton iconType="primary" icon={<FAIcons.FaRegCopy />} />
+              <IconButton iconType="pink" icon={<FAIcons.FaRegCopy />} />
+              <IconButton iconType="success" icon={<FAIcons.FaRegCopy />} />
+              <IconButton iconType="warning" icon={<FAIcons.FaRegCopy />} />
+              <IconButton iconType="danger" icon={<FAIcons.FaRegCopy />} />
             </div>
             <div className="mt-6">
               <h4>Checkbox</h4>

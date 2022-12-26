@@ -1,17 +1,17 @@
 /* eslint-disable prettier/prettier */
 import cx from 'classnames';
+import type { ReactNode } from 'react';
 import React from 'react';
-import type { IconBaseProps } from 'react-icons/lib';
 
 export type IconProps = {
   size?: number;
   href?: string;
   onClick?: () => void;
-  icon?: IconBaseProps ;
+  icon?: ReactNode ;
   iconType?: 'primary' | 'pink' | 'success' | 'warning' | 'danger';
 };
 
-const Icon: React.FC<IconProps> = ({
+const IconButton: React.FC<IconProps> = ({
   href,
   onClick,
   icon,
@@ -37,6 +37,7 @@ const Icon: React.FC<IconProps> = ({
         height: size || 50,
         width: size || 53,
       }}>
+        {/* Waiting for HOC Icons */}
         <>
           {icon}
         </>
@@ -45,4 +46,4 @@ const Icon: React.FC<IconProps> = ({
   );
 };
 
-export default Icon
+export default IconButton
