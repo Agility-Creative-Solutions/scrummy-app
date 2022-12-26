@@ -53,15 +53,15 @@ const DesignSystem = () => (
           <div>
             <h4>Checkbox</h4>
             <div>
-              <CheckBox />
-              <CheckBox />
+              <CheckBox label="Checkbox-1" />
+              <CheckBox label="Checkbox-2" />
             </div>
           </div>
           <div>
             <h4>Radio Button</h4>
             <div>
-              <RadioButton id="1" value="1" name="test" />
-              <RadioButton id="2" value="2" name="test" />
+              <RadioButton id="1" value="1" name="test" label="Radio-1" />
+              <RadioButton id="2" value="2" name="test" label="Radio-2" />
             </div>
           </div>
         </div>

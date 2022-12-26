@@ -15,10 +15,11 @@ const RadioButton: React.FC<RadioButtonProps> = ({
   value,
   checked,
   name,
+  label,
 }) => {
   return (
-    <div className="m-1 h-[22px] w-[22px] rounded-full">
-      <label htmlFor={id} className="relative h-2 w-2 cursor-pointer">
+    <div className="flex flex-col justify-items-start">
+      <label htmlFor={id} className="relative">
         <input
           name={name}
           type="radio"
@@ -26,9 +27,10 @@ const RadioButton: React.FC<RadioButtonProps> = ({
           onChange={onChange}
           value={value}
           checked={checked}
-          className="h-[22px] w-[22px] appearance-none rounded-full border-2 border-scrummyOrange-500 checked:bg-scrummyOrange-500"
+          className="h-[22px] w-[22px] cursor-pointer appearance-none rounded-full border-2  border-scrummyOrange-500 checked:bg-scrummyOrange-500"
         />
-        <span className="absolute left-[8px] top-[4px] h-[6px] w-[6px] rounded-full bg-[#e3e3e3]"></span>
+        <span className="absolute left-[8px] top-[8px] h-[6px] w-[6px] cursor-pointer rounded-full bg-[#e3e3e3]"></span>
+        <div className=" absolute bottom-[5px] left-5 pl-2">{label}</div>
       </label>
     </div>
   );
