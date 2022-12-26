@@ -1,10 +1,12 @@
+import cx from 'classnames';
+import type { ChangeEventHandler } from 'react';
 import React from 'react';
 import { FaCheck } from 'react-icons/fa';
 
 export type CheckBoxProps = {
   id?: string;
   value?: string;
-  onChange?: () => void;
+  onChange?: ChangeEventHandler<HTMLInputElement>;
   checked?: boolean;
   label?: string;
 };
@@ -27,8 +29,15 @@ const CheckBox: React.FC<CheckBoxProps> = ({
           onChange={onChange}
           value={value}
         />
-        <FaCheck className="check-1 absolute left-1 top-1 h-3 w-3 cursor-pointer text-white text-opacity-0 transition" />
-        <span className=" absolute bottom-1 left-5 pl-2">{label}</span>
+        <FaCheck
+          className={cx(
+            'absolute left-1 top-1 h-3 w-3 cursor-pointer text-white transition',
+            checked ? 'text-opacity-100' : 'text-opacity-0'
+          )}
+        />
+        {label && (
+          <span className="absolute bottom-1 left-5 pl-2">{label}</span>
+        )}
       </label>
     </div>
   );
