@@ -24,17 +24,20 @@ const DesignSystem = () => {
         </div>
         <div>
           <h4>Buttons</h4>
-
           <div className="flex flex-col gap-5">
-            <Button title="Test Button" buttonType="primary" />
+          <Button title="Full Width Button" fullWidth buttonType="primary" />
+          <div className="flex gap-5">
             <Button icon="MdInput" buttonType="primary" />
-            <Button title="Test Button" buttonType="secondary" />
-            <Button
-              title="Test Button"
-              icon="MdInput"
-              buttonType="tertiary"
-              fullWidth
-            />
+            <Button icon="MdInput" buttonType="success" />
+            <Button isLoading buttonType="success" />
+            <Button isLoading buttonType="pink" />
+            <Button isLoading buttonType="primary" />
+          </div>
+          <Button title="Pink Button" buttonType="pink" />
+          <Button title="Success Button" icon="MdInput" buttonType="success" />
+          <Button title="Warning Button" buttonType="warning" />
+          <Button title="Error Button" icon="MdInput" buttonType="danger" />
+          <Button title="Glass Button" icon="MdInput" buttonType="glass" />
           </div>
         </div>
         <div>
