@@ -7,7 +7,7 @@ export type IconProps = {
   size?: number;
   href?: string;
   onClick?: () => void;
-  icon?: ReactNode ;
+  icon?: string;
   iconType?: 'primary' | 'pink' | 'success' | 'warning' | 'danger';
 };
 
