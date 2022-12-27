@@ -1,5 +1,4 @@
 import { useState } from 'react';
-import * as FAIcons from 'react-icons/fa';
 
 import { Button, Input } from '@/components';
 import Card from '@/components/atoms/Card';
@@ -49,11 +48,11 @@ const DesignSystem = () => {
           <div>
             <h4>Icons</h4>
             <div className="flex flex-wrap  gap-5">
-              <IconButton iconType="primary" icon={<FAIcons.FaRegCopy />} />
-              <IconButton iconType="pink" icon={<FAIcons.FaRegCopy />} />
-              <IconButton iconType="success" icon={<FAIcons.FaRegCopy />} />
-              <IconButton iconType="warning" icon={<FAIcons.FaRegCopy />} />
-              <IconButton iconType="danger" icon={<FAIcons.FaRegCopy />} />
+              <IconButton iconType="primary" icon="" />
+              <IconButton iconType="pink" icon="" />
+              <IconButton iconType="success" icon="" />
+              <IconButton iconType="warning" icon="" />
+              <IconButton iconType="danger" icon="" />
             </div>
             <div className="mt-6">
               <h4>Checkbox</h4>
