@@ -18,11 +18,22 @@ const DesignSystem = () => {
           <h4>Inputs</h4>
           <Input
             type="text"
-            icon="MdInput"
+            icon="MdEmail"
+            value="renanpontez@gmail.com"
             onChange={() => console.log('Lorem')}
           />
-          <Input type="text" onChange={() => console.log('Lorem')} />
-          <Input type="text" onChange={() => console.log('Lorem')} />
+          <Input
+            type="text"
+            onChange={() => console.log('Lorem')}
+            icon="MdEmail"
+            placeholder="Email"
+          />
+          <Input
+            type="text"
+            icon="MdEmail"
+            placeholder="Email"
+            onChange={() => console.log('Lorem')}
+          />
         </div>
         <div>
           <h4>Buttons</h4>

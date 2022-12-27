@@ -25,18 +25,18 @@ const Input: React.FC<InputProps> = ({
   name,
   value,
 }) => {
-  const { Icon } = useMdIcons(icon ?? 'MdInput');
+  const { Icon } = useMdIcons(icon ?? 'MdEmail');
 
   return (
-    <div className="relative m-0 my-5 rounded-lg bg-gray-100 px-5">
+    <div className="relative m-0 my-5 h-[50px] rounded-lg bg-dark-100 px-5">
       {icon && (
         <span className="absolute left-0 top-0 flex h-full items-center justify-center pl-5">
-          {<Icon className="text-lg text-gray-500" color="inherit" />}
+          {<Icon className="text-lg text-gray-500" color="#f1f5f9" />}
         </span>
       )}
       <input
         className={cx(
-          'w-full rounded-lg bg-gray-100 text-gray-700 focus:outline-none py-2',
+          'w-full rounded-lg bg-dark-100 text-gray-100 focus:outline-none h-[50px] pb-[4px] placeholder:text-gray-500',
           {
             'pl-8': icon,
           }
