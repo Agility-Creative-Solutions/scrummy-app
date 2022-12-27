@@ -1,6 +1,5 @@
 /* eslint-disable prettier/prettier */
 import cx from 'classnames';
-import type { ReactNode } from 'react';
 import React from 'react';
 
 export type IconProps = {
@@ -16,7 +15,7 @@ const IconButton: React.FC<IconProps> = ({
   onClick,
   icon,
   iconType,
-  size,
+  size = 50,
 }) => {
   
   return (
@@ -34,8 +33,8 @@ const IconButton: React.FC<IconProps> = ({
     onClick={onClick}
     >
       <div className='m-auto flex items-center justify-center' style={{
-        height: size || 50,
-        width: size || 53,
+        height: size,
+        width: size,
       }}>
         {/* Waiting for HOC Icons */}
         <>
