@@ -36,9 +36,9 @@ const DesignSystem = () => {
             onChange={() => console.log('Lorem')}
           />
           <h4>Progress Bar</h4>
-          <ProgressBar totalsteps="8" stepsready="7" label="PLAYERS READY: " />
-          <ProgressBar totalsteps="8" stepsready="4" label="PLAYERS READY: " />
-          <ProgressBar totalsteps="8" stepsready="2" label="PLAYERS READY: " />
+          <ProgressBar totalSteps="8" stepsReady="7" label="PLAYERS READY: " />
+          <ProgressBar totalSteps="8" stepsReady="4" label="PLAYERS READY: " />
+          <ProgressBar totalSteps="8" stepsReady="2" label="PLAYERS READY: " />
         </div>
         <div>
           <h4>Buttons</h4>
