@@ -2,6 +2,8 @@ import { motion } from 'framer-motion';
 import type { ReactNode } from 'react';
 import React from 'react';
 
+import { ModalTransition } from '@/utils/AnimationsConfig';
+
 import Card from '../Card';
 import Backdrop from './Backdrop';
 
@@ -39,8 +41,8 @@ const Modal: React.FC<ModalProps> = ({
         initial="hidden"
         animate="visible"
         exit="exit"
-        transition={{ duration: 0.3 }}
-        onClick={(e) => e.stopPropagation()}
+        transition={ModalTransition}
+        onClick={(e: any) => e.stopPropagation()}
         variants={modalStates}
         className="w-1/3 pb-2"
       >
