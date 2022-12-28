@@ -59,11 +59,11 @@ const DesignSystem = () => {
           <div>
             <h4>Icons</h4>
             <div className="flex flex-wrap  gap-5">
-              <IconButton iconType="primary" icon="" />
-              <IconButton iconType="pink" icon="" />
-              <IconButton iconType="success" icon="" />
-              <IconButton iconType="warning" icon="" />
-              <IconButton iconType="danger" icon="" />
+              <IconButton iconType="primary" icon="MdInput" />
+              <IconButton iconType="pink" icon="MdInput" />
+              <IconButton iconType="success" icon="MdInput" />
+              <IconButton iconType="warning" icon="MdInput" />
+              <IconButton iconType="danger" icon="MdInput" />
             </div>
             <div className="mt-6">
               <h4>Checkbox</h4>

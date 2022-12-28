@@ -1,8 +1,7 @@
 import cx from 'classnames';
 import React from 'react';
 
-import useMdIcons from '@/hooks/useMdIcons';
-
+import Icon from '../Icon';
 import Loader from '../Loader';
 
 export type ButtonProps = {
@@ -25,8 +24,6 @@ const Button: React.FC<ButtonProps> = ({
   fullWidth,
   buttonType,
 }) => {
-  const { Icon } = useMdIcons(icon ?? 'MdInput');
-
   return (
     <a
       className={cx(
@@ -50,7 +47,9 @@ const Button: React.FC<ButtonProps> = ({
       ) : (
         <>
           <div className="flex items-center justify-center gap-5 text-center">
-            {icon && <span className="text-xl">{<Icon />}</span>}
+            {icon && (
+              <span className="text-xl">{<Icon iconName={icon} />}</span>
+            )}
             {title && <span className="text-base">{title}</span>}
           </div>
         </>
