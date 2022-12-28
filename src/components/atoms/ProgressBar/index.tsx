@@ -16,9 +16,11 @@ const ProgressBar: React.FC<ProgressBarProps> = ({
 
   return (
     <div>
-      <span className="p-2.5 text-sm font-semibold text-slate-50">
-        {label} {stepsready}/{totalsteps}
-      </span>
+      {showLabel && (
+        <span className="p-2.5 text-sm font-semibold text-slate-50">
+          {label} {stepsready}/{totalsteps}
+        </span>
+       )
       <div className=" h-[8px] w-[150px] rounded-md bg-slate-100">
         <div
           className={cx('rounded-md', {
