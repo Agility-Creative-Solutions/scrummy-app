@@ -1,7 +1,7 @@
 import cx from 'classnames';
 import React from 'react';
 
-import useMdIcons from '@/hooks/useMdIcons';
+import Icon from '../Icon';
 
 export type InputProps = {
   icon?: string;
@@ -25,13 +25,17 @@ const Input: React.FC<InputProps> = ({
   name,
   value,
 }) => {
-  const { Icon } = useMdIcons(icon ?? 'MdEmail');
-
   return (
     <div className="relative m-0 my-5 h-[50px] rounded-lg bg-dark-100 px-5">
       {icon && (
         <span className="absolute left-0 top-0 flex h-full items-center justify-center pl-5">
-          {<Icon className="text-lg text-gray-500" color="#f1f5f9" />}
+          {
+            <Icon
+              iconName={icon}
+              className="text-lg text-gray-500"
+              color="#f1f5f9"
+            />
+          }
         </span>
       )}
       <input

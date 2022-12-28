@@ -2,11 +2,13 @@
 import cx from 'classnames';
 import React from 'react';
 
+import Icon  from "../Icon";
+
 export type IconProps = {
   size?: number;
   href?: string;
   onClick?: () => void;
-  icon?: string;
+  icon: string;
   iconType?: 'primary' | 'pink' | 'success' | 'warning' | 'danger';
 };
 
@@ -38,7 +40,9 @@ const IconButton: React.FC<IconProps> = ({
       }}>
         {/* Waiting for HOC Icons */}
         <>
-          {icon}
+          <Icon 
+            iconName={icon}
+          />
         </>
       </div>
     </a>

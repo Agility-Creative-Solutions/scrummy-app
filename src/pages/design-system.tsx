@@ -1,7 +1,9 @@
+import { AnimatePresence } from 'framer-motion';
 import { useState } from 'react';
 
 import { Button, Input } from '@/components';
 import Card from '@/components/atoms/Card';
+import Modal from '@/components/atoms/Modal';
 
 import CheckBox from '../components/atoms/CheckBox';
 import IconButton from '../components/atoms/IconButton';
@@ -12,6 +14,8 @@ const DesignSystem = () => {
   const [checkboxOne, setCheckboxOne] = useState(false);
   const [checkboxTwo, setCheckboxTwo] = useState(true);
 
+  const [modal, setModal] = useState(false);
+  const toggleModal = () => setModal((currentValue) => !currentValue);
   return (
     <div style={{ backgroundColor: '#e3e3e3', padding: 20 }}>
       <div className="grid grid-cols-1 gap-10 px-10 md:grid-cols-3">
@@ -19,22 +23,11 @@ const DesignSystem = () => {
           <h4>Inputs</h4>
           <Input
             type="text"
-            icon="MdEmail"
-            value="renanpontez@gmail.com"
+            icon="MdInput"
             onChange={() => console.log('Lorem')}
           />
-          <Input
-            type="text"
-            onChange={() => console.log('Lorem')}
-            icon="MdEmail"
-            placeholder="Email"
-          />
-          <Input
-            type="text"
-            icon="MdEmail"
-            placeholder="Email"
-            onChange={() => console.log('Lorem')}
-          />
+          <Input type="text" onChange={() => console.log('Lorem')} />
+          <Input type="text" onChange={() => console.log('Lorem')} />
           <h4>Progress Bar</h4>
           <ProgressBar totalSteps="8" stepsReady="7" label="PLAYERS READY: " />
           <ProgressBar totalSteps="8" stepsReady="4" label="PLAYERS READY: " />
@@ -64,11 +57,11 @@ const DesignSystem = () => {
           <div>
             <h4>Icons</h4>
             <div className="flex flex-wrap  gap-5">
-              <IconButton iconType="primary" icon="" />
-              <IconButton iconType="pink" icon="" />
-              <IconButton iconType="success" icon="" />
-              <IconButton iconType="warning" icon="" />
-              <IconButton iconType="danger" icon="" />
+              <IconButton iconType="primary" icon="MdInput" />
+              <IconButton iconType="pink" icon="MdInput" />
+              <IconButton iconType="success" icon="MdInput" />
+              <IconButton iconType="warning" icon="MdInput" />
+              <IconButton iconType="danger" icon="MdInput" />
             </div>
             <div className="mt-6">
               <h4>Checkbox</h4>
@@ -117,6 +110,22 @@ const DesignSystem = () => {
               />
             </Card>
           </div>
+        </div>
+        <div>
+          <Button title="Open Modal" onClick={toggleModal} />
+
+          <AnimatePresence mode="wait">
+            {modal && (
+              <Modal
+                handleClose={toggleModal}
+                subtitle="Sample subtitle for the modal"
+                title="This is a Sample Modal"
+              >
+                Lorem ipsum dolor sit amet consectetur adipisicing elit. Quia
+                officiis molestias perferendis eos eveniet.
+              </Modal>
+            )}
+          </AnimatePresence>
         </div>
       </div>
     </div>
