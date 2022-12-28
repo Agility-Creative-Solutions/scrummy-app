@@ -5,6 +5,7 @@ import Card from '@/components/atoms/Card';
 
 import CheckBox from '../components/atoms/CheckBox';
 import IconButton from '../components/atoms/IconButton';
+import ProgressBar from '../components/atoms/ProgressBar';
 import RadioButton from '../components/atoms/RadioButton';
 
 const DesignSystem = () => {
@@ -34,6 +35,10 @@ const DesignSystem = () => {
             placeholder="Email"
             onChange={() => console.log('Lorem')}
           />
+          <h4>Progress Bar</h4>
+          <ProgressBar totalsteps="8" stepsready="7" label="PLAYERS READY: " />
+          <ProgressBar totalsteps="8" stepsready="4" label="PLAYERS READY: " />
+          <ProgressBar totalsteps="8" stepsready="2" label="PLAYERS READY: " />
         </div>
         <div>
           <h4>Buttons</h4>
