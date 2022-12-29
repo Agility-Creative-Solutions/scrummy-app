@@ -5,20 +5,18 @@ export type ProgressBarProps = {
   totalSteps?: string;
   stepsReady?: string;
   label?: string;
-  showLabel?: boolean;
 };
 
 const ProgressBar: React.FC<ProgressBarProps> = ({
   totalSteps,
   stepsReady,
   label,
-  showLabel = true,
 }) => {
   const progressPercentage = (Number(stepsReady) / Number(totalSteps)) * 100;
 
   return (
     <div>
-      {showLabel && (
+      {label && (
         <span className="p-2.5 text-sm font-semibold text-slate-50">
           {label} {stepsReady}/{totalSteps}
         </span>
