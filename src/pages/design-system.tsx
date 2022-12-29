@@ -7,6 +7,7 @@ import Modal from '@/components/atoms/Modal';
 
 import CheckBox from '../components/atoms/CheckBox';
 import IconButton from '../components/atoms/IconButton';
+import ProgressBar from '../components/atoms/ProgressBar';
 import RadioButton from '../components/atoms/RadioButton';
 
 const DesignSystem = () => {
@@ -27,6 +28,10 @@ const DesignSystem = () => {
           />
           <Input type="text" onChange={() => console.log('Lorem')} />
           <Input type="text" onChange={() => console.log('Lorem')} />
+          <h4>Progress Bar</h4>
+          <ProgressBar totalSteps="8" stepsReady="7" label="PLAYERS READY: " />
+          <ProgressBar totalSteps="8" stepsReady="4" label="PLAYERS READY: " />
+          <ProgressBar totalSteps="8" stepsReady="2" label="PLAYERS READY: " />
         </div>
         <div>
           <h4>Buttons</h4>
