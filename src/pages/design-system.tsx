@@ -5,13 +5,20 @@ import { Button, Input } from '@/components';
 import Card from '@/components/atoms/Card';
 import Modal from '@/components/atoms/Modal';
 
+import CheckBox from '../components/atoms/CheckBox';
+import IconButton from '../components/atoms/IconButton';
+import ProgressBar from '../components/atoms/ProgressBar';
+import RadioButton from '../components/atoms/RadioButton';
+
 const DesignSystem = () => {
+  const [checkboxOne, setCheckboxOne] = useState(false);
+  const [checkboxTwo, setCheckboxTwo] = useState(true);
+
   const [modal, setModal] = useState(false);
   const toggleModal = () => setModal((currentValue) => !currentValue);
-
   return (
-    <div style={{ backgroundColor: '#e3e3e3', height: '100vh', padding: 20 }}>
-      <div className="grid grid-cols-3 gap-10 px-10">
+    <div style={{ backgroundColor: '#e3e3e3', padding: 20 }}>
+      <div className="grid grid-cols-1 gap-10 px-10 md:grid-cols-3">
         <div>
           <h4>Inputs</h4>
           <Input
@@ -21,12 +28,16 @@ const DesignSystem = () => {
           />
           <Input type="text" onChange={() => console.log('Lorem')} />
           <Input type="text" onChange={() => console.log('Lorem')} />
+          <h4>Progress Bar</h4>
+          <ProgressBar totalSteps="8" stepsReady="7" label="PLAYERS READY: " />
+          <ProgressBar totalSteps="8" stepsReady="4" label="PLAYERS READY: " />
+          <ProgressBar totalSteps="8" stepsReady="2" label="PLAYERS READY: " />
         </div>
         <div>
           <h4>Buttons</h4>
           <div className="flex flex-col gap-5">
             <Button title="Full Width Button" fullWidth buttonType="primary" />
-            <div className="flex gap-5">
+            <div className="flex flex-wrap gap-5">
               <Button icon="MdInput" buttonType="primary" />
               <Button icon="MdInput" buttonType="success" />
               <Button isLoading buttonType="success" />
@@ -42,6 +53,38 @@ const DesignSystem = () => {
             <Button title="Warning Button" buttonType="warning" />
             <Button title="Error Button" icon="MdInput" buttonType="danger" />
             <Button title="Glass Button" icon="MdInput" buttonType="glass" />
+          </div>
+          <div>
+            <h4>Icons</h4>
+            <div className="flex flex-wrap  gap-5">
+              <IconButton iconType="primary" icon="MdInput" />
+              <IconButton iconType="pink" icon="MdInput" />
+              <IconButton iconType="success" icon="MdInput" />
+              <IconButton iconType="warning" icon="MdInput" />
+              <IconButton iconType="danger" icon="MdInput" />
+            </div>
+            <div className="mt-6">
+              <h4>Checkbox</h4>
+              <div>
+                <CheckBox
+                  label="Checkbox-1"
+                  checked={checkboxOne}
+                  onChange={(e: any) => setCheckboxOne(e.target.checked)}
+                />
+                <CheckBox
+                  label="Checkbox-2"
+                  checked={checkboxTwo}
+                  onChange={(e: any) => setCheckboxTwo(e.target.checked)}
+                />
+              </div>
+            </div>
+            <div>
+              <h4>Radio Button</h4>
+              <div>
+                <RadioButton id="1" value="1" name="test" label="Radio-1" />
+                <RadioButton id="2" value="2" name="test" label="Radio-2" />
+              </div>
+            </div>
           </div>
         </div>
         <div>
