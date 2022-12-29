@@ -38,7 +38,6 @@ const IconButton: React.FC<IconProps> = ({
         height: size,
         width: size,
       }}>
-        {/* Waiting for HOC Icons */}
         <>
           <Icon 
             iconName={icon}
