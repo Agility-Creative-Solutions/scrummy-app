@@ -19,7 +19,7 @@ const RadioButton: React.FC<RadioButtonProps> = ({
 }) => {
   return (
     <div className="flex flex-col justify-items-start">
-      <label htmlFor={id} className="relative">
+      <label htmlFor={id} className="relative cursor-pointer">
         <input
           name={name}
           type="radio"

@@ -23,11 +23,24 @@ const DesignSystem = () => {
           <h4>Inputs</h4>
           <Input
             type="text"
-            icon="MdInput"
+            icon="MdEmail"
+            placeholder="Email"
             onChange={() => console.log('Lorem')}
           />
-          <Input type="text" onChange={() => console.log('Lorem')} />
-          <Input type="text" onChange={() => console.log('Lorem')} />
+          <Input
+            type="text"
+            onChange={() => console.log('Lorem')}
+            icon="MdEmail"
+            value={'femacedogomes'}
+            errorIcon={false}
+          />
+          <Input
+            type="text"
+            icon="MdEmail"
+            onChange={() => console.log('Lorem')}
+            placeholder={'Email'}
+            errorIcon={false}
+          />
           <h4>Progress Bar</h4>
           <ProgressBar totalSteps="8" stepsReady="7" label="PLAYERS READY: " />
           <ProgressBar totalSteps="8" stepsReady="4" label="PLAYERS READY: " />

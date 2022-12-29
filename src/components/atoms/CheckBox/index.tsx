@@ -20,7 +20,7 @@ const CheckBox: React.FC<CheckBoxProps> = ({
 }) => {
   return (
     <div className="flex cursor-pointer flex-col justify-items-start">
-      <label htmlFor={id} className="relative">
+      <label htmlFor={id} className="relative cursor-pointer">
         <input
           className="h-5 w-5 cursor-pointer appearance-none rounded border-2  border-scrummyOrange-500  checked:bg-scrummyOrange-500"
           type="checkbox"
