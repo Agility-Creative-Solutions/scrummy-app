@@ -7,6 +7,7 @@ import Modal from '@/components/atoms/Modal';
 
 import CheckBox from '../components/atoms/CheckBox';
 import IconButton from '../components/atoms/IconButton';
+import LinkButton from '../components/atoms/Link';
 import ProgressBar from '../components/atoms/ProgressBar';
 import RadioButton from '../components/atoms/RadioButton';
 
@@ -32,6 +33,9 @@ const DesignSystem = () => {
           <ProgressBar totalSteps="8" stepsReady="7" label="PLAYERS READY: " />
           <ProgressBar totalSteps="8" stepsReady="4" label="PLAYERS READY: " />
           <ProgressBar totalSteps="8" stepsReady="2" label="PLAYERS READY: " />
+          <LinkButton href="/" title="Clique Aqui" style="primary"></LinkButton>
+          <LinkButton href="/design-system" style="white" title="Clique Aqui" />
+          <LinkButton href="/design-system" style="gray" title="Clique Aqui" />
         </div>
         <div>
           <h4>Buttons</h4>
