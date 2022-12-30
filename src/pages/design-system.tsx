@@ -33,9 +33,24 @@ const DesignSystem = () => {
           <ProgressBar totalSteps="8" stepsReady="7" label="PLAYERS READY: " />
           <ProgressBar totalSteps="8" stepsReady="4" label="PLAYERS READY: " />
           <ProgressBar totalSteps="8" stepsReady="2" label="PLAYERS READY: " />
-          <LinkButton href="/" title="Clique Aqui" style="primary"></LinkButton>
-          <LinkButton href="/design-system" style="white" title="Clique Aqui" />
-          <LinkButton href="/design-system" style="gray" title="Clique Aqui" />
+          <LinkButton
+            href="/"
+            title="Clique Aqui"
+            textSize="large"
+            textColor="primary"
+          ></LinkButton>
+          <LinkButton
+            href="/design-system"
+            textColor="white"
+            textSize="small"
+            title="Clique Aqui"
+          />
+          <LinkButton
+            href="/design-system"
+            textColor="gray"
+            textSize="normal"
+            title="Clique Aqui"
+          />
         </div>
         <div>
           <h4>Buttons</h4>
