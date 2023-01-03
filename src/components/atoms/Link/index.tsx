@@ -5,6 +5,7 @@ import React from 'react';
 export type LinkProps = {
   href: string;
   title?: string;
+  target?: '_blank' | '_self' | '_parent' | '_top';
   bgColor?: 'none' | 'primary' | 'white' | 'gray';
   textSize?: 'small' | 'normal' | 'large';
   textColor?: 'primary' | 'white' | 'gray';
@@ -14,6 +15,7 @@ const LinkButton: React.FC<LinkProps> = ({
   href,
   title,
   textSize,
+  target,
   textColor,
   bgColor = 'none',
 }) => {
@@ -21,6 +23,7 @@ const LinkButton: React.FC<LinkProps> = ({
     <div>
       <Link href={href} passHref>
         <a
+          target={target}
           className={cx('text-end hover:underline ', {
             ' text-scrummyOrange-500 decoration-scrummyOrange-500 ':
               textColor === 'primary',
