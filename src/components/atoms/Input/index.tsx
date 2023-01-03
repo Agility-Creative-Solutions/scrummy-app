@@ -13,6 +13,7 @@ export type InputProps = {
   required?: boolean;
   name?: string;
   value?: string;
+  errorIcon?: boolean;
 };
 
 const Input: React.FC<InputProps> = ({
@@ -24,6 +25,7 @@ const Input: React.FC<InputProps> = ({
   required,
   name,
   value,
+  errorIcon = true,
 }) => {
   return (
     <div className="relative m-0 my-5 h-[50px] rounded-lg bg-dark-100 px-5">
@@ -53,6 +55,16 @@ const Input: React.FC<InputProps> = ({
         required={required}
       />
       {floatingPlaceholder && <span>{placeholder}</span>}
+      {errorIcon && (
+        <span className="absolute top-4 pt-0.5">
+          {
+            <Icon
+              iconName="MdError"
+              className="text-end text-xs text-red-500"
+            />
+          }
+        </span>
+      )}
     </div>
   );
 };
