@@ -1,12 +1,11 @@
 import cx from 'classnames';
-import type { ChangeEventHandler } from 'react';
 import React from 'react';
 import { FaCheck } from 'react-icons/fa';
 
 export type CheckBoxProps = {
   id?: string;
   value?: string;
-  onChange?: ChangeEventHandler<HTMLInputElement>;
+  onChange?: (e: any) => void;
   checked?: boolean;
   label?: string;
 };

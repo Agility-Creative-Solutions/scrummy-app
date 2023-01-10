@@ -11,7 +11,7 @@ export type ButtonProps = {
   isLoading?: boolean;
   fullWidth?: boolean;
   disabled?: boolean;
-  onClick?: () => void;
+  onClick?: (e: any) => void;
   buttonType?: 'primary' | 'pink' | 'success' | 'warning' | 'danger' | 'glass';
 };
 
@@ -46,11 +46,15 @@ const Button: React.FC<ButtonProps> = ({
         <Loader />
       ) : (
         <>
-          <div className="flex items-center justify-center gap-5 text-center">
+          <div className="mx-auto flex items-center justify-center gap-5 text-center">
             {icon && (
-              <span className="text-xl">{<Icon iconName={icon} />}</span>
+              <span className=" text-xl">{<Icon iconName={icon} />}</span>
             )}
-            {title && <span className="text-base">{title}</span>}
+            {title && (
+              <span className=" justify-center text-center text-base">
+                {title}
+              </span>
+            )}
           </div>
         </>
       )}
