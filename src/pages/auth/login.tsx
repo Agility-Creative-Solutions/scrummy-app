@@ -5,9 +5,9 @@ import { useState } from 'react';
 import { Button, Input } from '@/components';
 import Card from '@/components/atoms/Card';
 
-import LogoImg from '../../public/assets/images/scrummylogo.png';
-import LogoTitle from '../../public/assets/images/scrummytitle.png';
-import LinkButton from '../components/atoms/LinkButton';
+import LogoImg from '../../../public/assets/images/scrummylogo.png';
+import LogoTitle from '../../../public/assets/images/scrummytitle.png';
+import LinkButton from '../../components/atoms/LinkButton';
 
 const LoginPage = () => {
   const [email, setEmail] = useState('');
@@ -65,13 +65,13 @@ const LoginPage = () => {
       ></motion.div>
 
       <div className="absolute h-[100vh] w-[100vw]">
-        <div className="mx-auto mt-[100px] h-[72px] w-[72px] rounded-xl bg-white">
+        <div className="mx-auto mt-[20px] h-[72px] w-[72px] rounded-xl bg-white sm:mt-[100px]">
           <img src={LogoImg.src} alt="Logo-Image" className="m-auto pt-3" />
         </div>
         <div className="m-auto flex items-center justify-center pt-10">
           <img src={LogoTitle.src} alt="Logo-Title" />
         </div>
-        <Card className="mx-auto mt-[50px] max-w-[380px] rounded-3xl pb-12">
+        <Card className="mx-auto mt-[100px] h-[100%] rounded-3xl pb-12 sm:mt-[50px] sm:h-[420px] sm:max-w-[380px]">
           <div>
             <form>
               <motion.div
