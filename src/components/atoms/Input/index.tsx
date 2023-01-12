@@ -30,9 +30,18 @@ const Input: React.FC<InputProps> = ({
   errorIcon = false,
 }) => {
   return (
-    <div className="relative m-0 my-7 h-[50px] rounded-lg border-[1px] border-gray-600 bg-dark-100 px-5 pb-5">
+    <div
+      className={cx(
+        'relative m-0 my-7 h-[50px] rounded-lg border-[1px] bg-dark-100 px-5 pb-5',
+        {
+          'border-gray-600': errorIcon === false,
+          'border-scrummyRed-500': errorIcon === true,
+          'mb-10': errorIcon,
+        }
+      )}
+    >
       {icon && (
-        <span className="absolute left-0 top-0 flex h-full items-center justify-center pl-5">
+        <span className="absolute left-[-6px] top-0 flex h-full items-center justify-center p-5">
           {
             <Icon
               iconName={icon}
@@ -44,9 +53,10 @@ const Input: React.FC<InputProps> = ({
       )}
       <input
         className={cx(
-          'w-full rounded-lg bg-dark-100 text-gray-100 focus:outline-none pt-2.5 placeholder:text-gray-500',
+          'align-middle h-[46px] w-full rounded-lg bg-dark-100 text-gray-100 focus:outline-none placeholder:text-gray-500',
           {
             'pl-8': icon,
+            'pr-4': errorIcon,
           }
         )}
         name={name}
@@ -59,10 +69,10 @@ const Input: React.FC<InputProps> = ({
       {floatingPlaceholder && <span>{placeholder}</span>}
       {errorIcon && (
         <div>
-          <span className="mt-[-18px] flex justify-end">
+          <span className="mt-[-30px] mr-[-14px] flex justify-end">
             {<Icon iconName="MdError" className=" text-red-500" />}
           </span>
-          <span className="mx-auto flex justify-center pt-[18px] align-middle text-sm text-red-500">
+          <span className=" flex justify-start pt-[24px] align-middle  text-sm text-red-500">
             {errorMessage}
           </span>
         </div>

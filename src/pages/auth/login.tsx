@@ -1,5 +1,4 @@
 import { motion } from 'framer-motion';
-import type { SetStateAction } from 'react';
 import { useState } from 'react';
 
 import { Button, Input } from '@/components';
@@ -19,6 +18,17 @@ const LoginPage = () => {
     username: 'test@scrummypoker.com',
     password: 'qwer1234',
   };
+
+  const passwordChange = (e: any) => {
+    setPasswordInvalid(false);
+    setPassword(e.target.value);
+  };
+
+  const emailChange = (e: any) => {
+    setEmailInvalid(false);
+    setEmail(e.target.value);
+  };
+
   const handleSubmit = (e: { preventDefault: () => void }) => {
     e.preventDefault();
 
@@ -65,107 +75,114 @@ const LoginPage = () => {
       ></motion.div>
 
       <div className="absolute h-[100vh] w-[100vw]">
-        <div className="mx-auto mt-[20px] h-[72px] w-[72px] rounded-xl bg-white sm:mt-[100px]">
-          <img src={LogoImg.src} alt="Logo-Image" className="m-auto pt-3" />
-        </div>
-        <div className="m-auto flex items-center justify-center pt-10">
-          <img src={LogoTitle.src} alt="Logo-Title" />
-        </div>
-        <Card className="mx-auto mt-[100px] h-[100%] rounded-3xl pb-12 sm:mt-[50px] sm:h-[420px] sm:max-w-[380px]">
-          <div>
-            <form>
-              <motion.div
-                initial={{ opacity: 0 }}
-                animate={{ opacity: 1 }}
-                transition={{ delay: 0.2, duration: 1.2 }}
-              >
-                <Input
-                  onChange={(e) => setEmail(e.target.value)}
-                  errorMessage={`Wrong email or doens't existe. Try again.`}
-                  type={'email'}
-                  name={'email'}
-                  errorIcon={emailInvalid}
-                  placeholder={'Email'}
-                  icon={'MdEmail'}
-                ></Input>
-              </motion.div>
-              <motion.div
-                initial={{ opacity: 0 }}
-                animate={{ opacity: 1 }}
-                transition={{ delay: 0.35, duration: 1.2 }}
-              >
-                <Input
-                  onChange={(e: {
-                    target: { value: SetStateAction<string> };
-                  }) => setPassword(e.target.value)}
-                  errorMessage={`Wrong password. Try again.`}
-                  errorIcon={passwordInvalid}
-                  type={'password'}
-                  name={'password'}
-                  placeholder={'Password'}
-                  required={true}
-                  icon={'MdLock'}
-                ></Input>
-              </motion.div>
-            </form>
+        <div className="mt-[10vh] sm:mt-[10vh]">
+          <div className="mx-auto h-[72px] w-[72px] rounded-xl bg-white">
+            <img src={LogoImg.src} alt="Logo-Image" className="m-auto pt-3" />
           </div>
-          <div className="flex flex-col gap-4">
-            <motion.div
-              initial={{ opacity: 0 }}
-              animate={{ opacity: 1 }}
-              transition={{ delay: 0.5, duration: 1.2 }}
-            >
-              <Button
-                onClick={handleSubmit}
-                buttonType="success"
-                fullWidth={true}
-                title={'Sign In'}
-              ></Button>
-            </motion.div>
+          <div className="m-auto flex items-center justify-center pt-10 ">
+            <img src={LogoTitle.src} alt="Logo-Title" />
+          </div>
+        </div>
 
-            <motion.div
-              initial={{ opacity: 0 }}
-              animate={{ opacity: 1 }}
-              transition={{ delay: 0.75, duration: 1.2 }}
-            >
-              <Button
-                buttonType="pink"
-                fullWidth={true}
-                title={'Sign In with Google'}
-              ></Button>
-            </motion.div>
-          </div>
-          <div className="flex justify-between pt-4">
-            <motion.div
-              initial={{ opacity: 0 }}
-              animate={{ opacity: 1 }}
-              transition={{ delay: 0.9, duration: 1.2 }}
-            >
-              <LinkButton
-                href={'/'}
-                target={'_self'}
-                bgColor={'none'}
-                textSize={'small'}
-                textColor={'gray'}
-                title={'Forget password'}
-              ></LinkButton>
-            </motion.div>
-            <motion.div
-              initial={{ opacity: 0 }}
-              animate={{ opacity: 1 }}
-              transition={{ delay: 0.9, duration: 1.2 }}
-            >
-              <LinkButton
-                href={'/'}
-                target={'_self'}
-                bgColor={'none'}
-                textSize={'small'}
-                textColor={'gray'}
-                title={'Login account'}
-              ></LinkButton>
-            </motion.div>
-          </div>
-        </Card>
+        <motion.div
+          initial={{ opacity: 0 }}
+          animate={{ opacity: 1 }}
+          transition={{ delay: 0.1, duration: 0.3 }}
+        >
+          <Card className="fixed bottom-0 mx-auto mt-[100px] rounded-b-none  sm:relative sm:mt-[10vh]  sm:max-w-[380px] sm:rounded-b-3xl">
+            <div>
+              <form>
+                <motion.div
+                  initial={{ opacity: 0 }}
+                  animate={{ opacity: 1 }}
+                  transition={{ delay: 0.3, duration: 0.7 }}
+                >
+                  <Input
+                    onChange={emailChange}
+                    errorMessage={`Wrong email or doens't existe. Try again.`}
+                    type={'email'}
+                    name={'email'}
+                    errorIcon={emailInvalid}
+                    placeholder={'Email'}
+                    icon={'MdEmail'}
+                  ></Input>
+                </motion.div>
+                <motion.div
+                  initial={{ opacity: 0 }}
+                  animate={{ opacity: 1 }}
+                  transition={{ delay: 0.4, duration: 0.7 }}
+                >
+                  <Input
+                    onChange={passwordChange}
+                    errorMessage={`Wrong password. Try again.`}
+                    errorIcon={passwordInvalid}
+                    type={'password'}
+                    name={'password'}
+                    placeholder={'Password'}
+                    required={true}
+                    icon={'MdLock'}
+                  ></Input>
+                </motion.div>
+              </form>
+            </div>
+            <div className="flex flex-col gap-4">
+              <motion.div
+                initial={{ opacity: 0 }}
+                animate={{ opacity: 1 }}
+                transition={{ delay: 0.5, duration: 0.7 }}
+              >
+                <Button
+                  onClick={handleSubmit}
+                  buttonType="success"
+                  fullWidth={true}
+                  title={'Sign In'}
+                ></Button>
+              </motion.div>
+
+              <motion.div
+                initial={{ opacity: 0 }}
+                animate={{ opacity: 1 }}
+                transition={{ delay: 0.6, duration: 0.7 }}
+              >
+                <Button
+                  buttonType="pink"
+                  fullWidth={true}
+                  title={'Sign In with Google'}
+                ></Button>
+              </motion.div>
+            </div>
+            <div className="flex justify-between pt-6">
+              <motion.div
+                initial={{ opacity: 0 }}
+                animate={{ opacity: 1 }}
+                transition={{ delay: 0.6, duration: 0.7 }}
+              >
+                <LinkButton
+                  href={'/'}
+                  target={'_self'}
+                  bgColor={'none'}
+                  textSize={'small'}
+                  textColor={'gray'}
+                  title={'Forget password'}
+                ></LinkButton>
+              </motion.div>
+              <motion.div
+                initial={{ opacity: 0 }}
+                animate={{ opacity: 1 }}
+                transition={{ delay: 0.6, duration: 0.7 }}
+              >
+                <LinkButton
+                  href={'/'}
+                  target={'_self'}
+                  bgColor={'none'}
+                  textSize={'small'}
+                  textColor={'gray'}
+                  title={'Create account'}
+                ></LinkButton>
+              </motion.div>
+            </div>
+          </Card>
+        </motion.div>
       </div>
     </div>
   );
