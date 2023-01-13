@@ -29,7 +29,7 @@ const LoginPage = () => {
     setEmail(e.target.value);
   };
 
-  const handleSubmit = (e: { preventDefault: () => void }) => {
+  const handleSubmit = (e: React.ChangeEvent<HTMLInputElement>) => {
     e.preventDefault();
 
     if (email === testAcount.username) {

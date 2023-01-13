@@ -53,7 +53,7 @@ const Input: React.FC<InputProps> = ({
       )}
       <input
         className={cx(
-          'align-middle h-[46px] w-full rounded-lg bg-dark-100 text-gray-100 focus:outline-none placeholder:text-gray-500',
+          'autofill:bg-transparent align-middle h-[46px] w-full rounded-lg bg-dark-100 text-gray-100 focus:outline-none placeholder:text-gray-500',
           {
             'pl-8': icon,
             'pr-4': errorIcon,
