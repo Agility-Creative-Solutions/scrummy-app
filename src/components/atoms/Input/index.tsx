@@ -6,13 +6,14 @@ import Icon from '../Icon';
 export type InputProps = {
   icon?: string;
   type: string;
-  onChange: () => void;
+  onChange: (e: any) => void;
   placeholder?: string;
   floatingPlaceholder?: boolean;
   label?: string;
   required?: boolean;
   name?: string;
   value?: string;
+  errorMessage?: string;
   errorIcon?: boolean;
 };
 
@@ -25,12 +26,22 @@ const Input: React.FC<InputProps> = ({
   required,
   name,
   value,
-  errorIcon = true,
+  errorMessage,
+  errorIcon = false,
 }) => {
   return (
-    <div className="relative m-0 my-5 h-[50px] rounded-lg bg-dark-100 px-5">
+    <div
+      className={cx(
+        'relative m-0 my-7 h-[50px] rounded-lg border-[1px] bg-dark-100 px-5 pb-5',
+        {
+          'border-gray-600': errorIcon === false,
+          'border-scrummyRed-500': errorIcon === true,
+          'mb-10': errorIcon,
+        }
+      )}
+    >
       {icon && (
-        <span className="absolute left-0 top-0 flex h-full items-center justify-center pl-5">
+        <span className="absolute left-[-6px] top-0 flex h-full items-center justify-center p-5">
           {
             <Icon
               iconName={icon}
@@ -42,9 +53,10 @@ const Input: React.FC<InputProps> = ({
       )}
       <input
         className={cx(
-          'w-full rounded-lg bg-dark-100 text-gray-100 focus:outline-none h-[50px] pb-[4px] placeholder:text-gray-500',
+          'autofill:bg-transparent align-middle h-[46px] w-full rounded-lg bg-dark-100 text-gray-100 focus:outline-none placeholder:text-gray-500',
           {
             'pl-8': icon,
+            'pr-4': errorIcon,
           }
         )}
         name={name}
@@ -56,14 +68,14 @@ const Input: React.FC<InputProps> = ({
       />
       {floatingPlaceholder && <span>{placeholder}</span>}
       {errorIcon && (
-        <span className="absolute top-4 pt-0.5">
-          {
-            <Icon
-              iconName="MdError"
-              className="text-end text-xs text-red-500"
-            />
-          }
-        </span>
+        <div>
+          <span className="mt-[-30px] mr-[-14px] flex justify-end">
+            {<Icon iconName="MdError" className=" text-red-500" />}
+          </span>
+          <span className=" flex justify-start pt-[24px] align-middle  text-sm text-red-500">
+            {errorMessage}
+          </span>
+        </div>
       )}
     </div>
   );

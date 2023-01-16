@@ -18,7 +18,7 @@ const Card: React.FC<CardProps> = ({
   return (
     <div
       className={cx(
-        'p-5 bg-dark-100 text-light-100 rounded-lg w-full',
+        'p-5 bg-dark-100 text-light-100 rounded-3xl w-full',
         className
       )}
     >

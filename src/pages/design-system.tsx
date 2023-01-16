@@ -7,7 +7,7 @@ import Modal from '@/components/atoms/Modal';
 
 import CheckBox from '../components/atoms/CheckBox';
 import IconButton from '../components/atoms/IconButton';
-import LinkButton from '../components/atoms/Link';
+import LinkButton from '../components/atoms/LinkButton';
 import ProgressBar from '../components/atoms/ProgressBar';
 import RadioButton from '../components/atoms/RadioButton';
 
