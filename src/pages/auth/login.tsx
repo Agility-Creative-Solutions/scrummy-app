@@ -3,7 +3,7 @@ import { useState } from 'react';
 
 import { Button, Input } from '@/components';
 import Card from '@/components/atoms/Card';
-import Layout1 from '@/layouts/layout_login_register';
+import AuthLayout from '@/layouts/authLayout';
 
 import LinkButton from '../../components/atoms/LinkButton';
 
@@ -49,7 +49,7 @@ const LoginPage = () => {
   };
 
   return (
-    <Layout1>
+    <AuthLayout>
       <motion.div
         initial={{ opacity: 0 }}
         animate={{ opacity: 1 }}
@@ -149,7 +149,7 @@ const LoginPage = () => {
           </div>
         </Card>
       </motion.div>
-    </Layout1>
+    </AuthLayout>
   );
 };
 

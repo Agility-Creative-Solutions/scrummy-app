@@ -1,14 +1,14 @@
 import { motion } from 'framer-motion';
 import type { ReactNode } from 'react';
 
-import LogoImg from '../../../public/assets/images/scrummylogo.png';
-import LogoTitle from '../../../public/assets/images/scrummytitle.png';
+import LogoImg from '../../public/assets/images/scrummylogo.png';
+import LogoTitle from '../../public/assets/images/scrummytitle.png';
 
-export type Layout1Props = {
+export type AuthLayoutProps = {
   children: ReactNode;
 };
 
-const Layout1: React.FC<Layout1Props> = ({ children }) => {
+const AuthLayout: React.FC<AuthLayoutProps> = ({ children }) => {
   return (
     <div className="relative h-[100vh] w-[100vw] overflow-hidden bg-scrummyOrange-500 pt-20">
       <motion.div
@@ -49,4 +49,4 @@ const Layout1: React.FC<Layout1Props> = ({ children }) => {
   );
 };
 
-export default Layout1;
+export default AuthLayout;
