@@ -15,9 +15,11 @@ export type InputProps = {
   value?: string;
   errorMessage?: string;
   errorIcon?: boolean;
+  errorPadding?: 'small' | 'normal' | 'large';
 };
 
 const Input: React.FC<InputProps> = ({
+  errorPadding,
   icon,
   type,
   onChange,
@@ -36,7 +38,9 @@ const Input: React.FC<InputProps> = ({
         {
           'border-gray-600': errorIcon === false,
           'border-scrummyRed-500': errorIcon === true,
-          'mb-10': errorIcon,
+          'mb-[px]': errorIcon && errorPadding === 'small',
+          'mb-[54px]': errorIcon && errorPadding === 'normal',
+          'mb-[66px]': errorIcon && errorPadding === 'large',
         }
       )}
     >
@@ -56,7 +60,7 @@ const Input: React.FC<InputProps> = ({
           'autofill:bg-transparent align-middle h-[46px] w-full rounded-lg bg-dark-100 text-gray-100 focus:outline-none placeholder:text-gray-500',
           {
             'pl-8': icon,
-            'pr-4': errorIcon,
+            'pr-5': errorIcon,
           }
         )}
         name={name}
@@ -69,10 +73,19 @@ const Input: React.FC<InputProps> = ({
       {floatingPlaceholder && <span>{placeholder}</span>}
       {errorIcon && (
         <div>
-          <span className="mt-[-30px] mr-[-14px] flex justify-end">
+          <span className="mt-[-32px] mr-[-14px] flex justify-end">
             {<Icon iconName="MdError" className=" text-red-500" />}
           </span>
-          <span className=" flex justify-start pt-[24px] align-middle  text-sm text-red-500">
+          <span
+            className={cx(
+              ' flex justify-start align-middle  text-sm text-red-500',
+              {
+                'pt-[22px]': errorPadding === 'small',
+                'pt-[24px]': errorPadding === 'normal',
+                'pt-[19px]': errorPadding === 'large',
+              }
+            )}
+          >
             {errorMessage}
           </span>
         </div>
