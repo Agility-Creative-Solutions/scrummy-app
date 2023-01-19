@@ -14,7 +14,7 @@ const LoginPage = () => {
   const [password, setPassword] = useState('');
 
   const testAcount = {
-    username: 'ScrummyTest',
+    userName: 'ScrummyTest',
     email: 'test@scrummypoker.com',
     password: 'qwer1234',
   };
@@ -42,10 +42,9 @@ const LoginPage = () => {
     } else {
       setPasswordInvalid(true);
     }
-    console.log(`email: ${email}, password: ${password}`);
 
     if (email === testAcount.email && password === testAcount.password) {
-      alert(`Login realizado com sucesso. Bem vindo ${email}!!`);
+      alert(`Login maded with sucess. Welcome ${email}!!`);
     }
   };
 
@@ -128,8 +127,6 @@ const LoginPage = () => {
             >
               <LinkButton
                 href={'/'}
-                target={'_self'}
-                bgColor={'none'}
                 textSize={'small'}
                 textColor={'gray'}
                 title={'Forget password'}
@@ -142,8 +139,6 @@ const LoginPage = () => {
             >
               <LinkButton
                 href={'/auth/register'}
-                target={'_self'}
-                bgColor={'none'}
                 textSize={'small'}
                 textColor={'gray'}
                 title={'Create account'}

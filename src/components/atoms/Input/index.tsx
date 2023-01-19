@@ -38,14 +38,14 @@ const Input: React.FC<InputProps> = ({
         {
           'border-gray-600': errorIcon === false,
           'border-scrummyRed-500': errorIcon === true,
-          'mb-[px]': errorIcon && errorPadding === 'small',
-          'mb-[54px]': errorIcon && errorPadding === 'normal',
-          'mb-[66px]': errorIcon && errorPadding === 'large',
+          'mb-8': errorIcon && errorPadding === 'small',
+          'mb-14': errorIcon && errorPadding === 'normal',
+          'mb-20': errorIcon && errorPadding === 'large',
         }
       )}
     >
       {icon && (
-        <span className="absolute left-[-6px] top-0 flex h-full items-center justify-center p-5">
+        <span className="absolute left-1.5 top-0 flex h-full items-center justify-center p-5">
           {
             <Icon
               iconName={icon}
@@ -57,7 +57,7 @@ const Input: React.FC<InputProps> = ({
       )}
       <input
         className={cx(
-          'autofill:bg-transparent align-middle h-[46px] w-full rounded-lg bg-dark-100 text-gray-100 focus:outline-none placeholder:text-gray-500',
+          'autofill:bg-transparent align-middle h-11 w-full rounded-lg bg-dark-100 text-gray-100 focus:outline-none placeholder:text-gray-500',
           {
             'pl-8': icon,
             'pr-5': errorIcon,
@@ -73,16 +73,15 @@ const Input: React.FC<InputProps> = ({
       {floatingPlaceholder && <span>{placeholder}</span>}
       {errorIcon && (
         <div>
-          <span className="mt-[-32px] mr-[-14px] flex justify-end">
+          <span className="mt-[-29px] mr-[-14px] flex justify-end">
             {<Icon iconName="MdError" className=" text-red-500" />}
           </span>
           <span
             className={cx(
-              ' flex justify-start align-middle  text-sm text-red-500',
+              ' flex justify-start align-middle  text-sm text-red-500 pt-6',
               {
-                'pt-[22px]': errorPadding === 'small',
-                'pt-[24px]': errorPadding === 'normal',
-                'pt-[19px]': errorPadding === 'large',
+                'pt-5': errorPadding === 'small',
+                'pt-6': errorPadding === 'normal' || errorPadding === 'large',
               }
             )}
           >

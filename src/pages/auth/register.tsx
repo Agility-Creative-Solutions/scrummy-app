@@ -6,18 +6,23 @@ import Card from '@/components/atoms/Card';
 import AuthLayout from '@/layouts/authLayout';
 
 import LinkButton from '../../components/atoms/LinkButton';
+import {
+  emailValidation,
+  passwordValidation,
+  userNameValidation,
+} from '../../utils/auth';
 
 const Register = () => {
-  const [username, setUserName] = useState('');
-  const [usernameInvalid, setUsernameInvalid] = useState(false);
+  const [userName, setuserName] = useState('');
+  const [userNameInvalid, setuserNameInvalid] = useState(false);
   const [email, setEmail] = useState('');
   const [emailInvalid, setEmailInvalid] = useState(false);
   const [passwordInvalid, setPasswordInvalid] = useState(false);
   const [password, setPassword] = useState('');
 
-  const usernameChange = (e: any) => {
-    setUsernameInvalid(false);
-    setUserName(e.target.value);
+  const userNameChange = (e: any) => {
+    setuserNameInvalid(false);
+    setuserName(e.target.value);
   };
 
   const passwordChange = (e: any) => {
@@ -30,42 +35,12 @@ const Register = () => {
     setEmail(e.target.value);
   };
 
-  const emailValidation = () => {
-    const regEx = /^[A-Z0-9._%+-]+@[A-Z0-9.-]+\.[A-Z]{2,4}$/i;
-    if (regEx.test(email)) {
-      setEmailInvalid(false);
-    } else {
-      setEmailInvalid(true);
-    }
-  };
-
-  const passwordValidation = () => {
-    const regEx =
-      /^(?=.*[a-zA-Z])(?=.*\d)(?=.*[!@#$%^&*()_+])[A-Za-z\d][A-Za-z\d!@#$%^&*()_+]{5,20}$/;
-    if (regEx.test(password)) {
-      setPasswordInvalid(false);
-    } else {
-      setPasswordInvalid(true);
-    }
-  };
-
-  const usernameValidation = () => {
-    const regEx = /^[A-Za-z][A-Za-z0-9_]{7,29}$/;
-    if (regEx.test(username)) {
-      setUsernameInvalid(false);
-    } else {
-      setUsernameInvalid(true);
-    }
-  };
-
   const handleSubmit = (e: React.ChangeEvent<HTMLInputElement>) => {
     e.preventDefault();
 
-    emailValidation();
-    passwordValidation();
-    usernameValidation();
-
-    console.log(`username: ${username} email: ${email}, password: ${password}`);
+    emailValidation(email, setEmailInvalid);
+    passwordValidation(password, setPasswordInvalid);
+    userNameValidation(userName, setuserNameInvalid);
   };
 
   return (
@@ -84,12 +59,12 @@ const Register = () => {
                 transition={{ delay: 0.3, duration: 0.7 }}
               >
                 <Input
-                  onChange={usernameChange}
-                  errorMessage={`Username should be 3-16 characters without any special character!`}
+                  onChange={userNameChange}
+                  errorMessage={`userName should be 2-29 characters without number or special character!`}
                   type={'text'}
                   required={true}
-                  name={'username'}
-                  errorIcon={usernameInvalid}
+                  name={'userName'}
+                  errorIcon={userNameInvalid}
                   placeholder={'Your name'}
                   icon={'MdPersonOutline'}
                   errorPadding={'normal'}
@@ -165,8 +140,6 @@ const Register = () => {
             >
               <LinkButton
                 href={'/auth/login'}
-                target={'_self'}
-                bgColor={'none'}
                 textSize={'small'}
                 textColor={'gray'}
                 title={'Login account'}
