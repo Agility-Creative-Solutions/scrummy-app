@@ -3,20 +3,26 @@ import { useState } from 'react';
 
 import { Button, Input } from '@/components';
 import Card from '@/components/atoms/Card';
-import AuthLayout from '@/layouts/AuthLayout';
+import AuthLayout from '@/layouts/authLayout';
 
 import LinkButton from '../../components/atoms/LinkButton';
+import {
+  emailValidation,
+  passwordValidation,
+  userNameValidation,
+} from '../../utils/auth';
 
-const LoginPage = () => {
+const Register = () => {
+  const [userName, setuserName] = useState('');
+  const [userNameInvalid, setuserNameInvalid] = useState(false);
   const [email, setEmail] = useState('');
   const [emailInvalid, setEmailInvalid] = useState(false);
   const [passwordInvalid, setPasswordInvalid] = useState(false);
   const [password, setPassword] = useState('');
 
-  const testAcount = {
-    userName: 'ScrummyTest',
-    email: 'test@scrummypoker.com',
-    password: 'qwer1234',
+  const userNameChange = (e: any) => {
+    setuserNameInvalid(false);
+    setuserName(e.target.value);
   };
 
   const passwordChange = (e: any) => {
@@ -32,20 +38,9 @@ const LoginPage = () => {
   const handleSubmit = (e: React.ChangeEvent<HTMLInputElement>) => {
     e.preventDefault();
 
-    if (email === testAcount.email) {
-      setEmailInvalid(false);
-    } else {
-      setEmailInvalid(true);
-    }
-    if (password === testAcount.password || password.length <= 5) {
-      setPasswordInvalid(false);
-    } else {
-      setPasswordInvalid(true);
-    }
-
-    if (email === testAcount.email && password === testAcount.password) {
-      alert(`Login maded with sucess. Welcome ${email}!!`);
-    }
+    emailValidation(email, setEmailInvalid);
+    passwordValidation(password, setPasswordInvalid);
+    userNameValidation(userName, setuserNameInvalid);
   };
 
   return (
@@ -64,12 +59,30 @@ const LoginPage = () => {
                 transition={{ delay: 0.3, duration: 0.7 }}
               >
                 <Input
+                  onChange={userNameChange}
+                  errorMessage={`userName should be 2-29 characters without number or special character!`}
+                  type={'text'}
+                  required={true}
+                  name={'userName'}
+                  errorIcon={userNameInvalid}
+                  placeholder={'Your name'}
+                  icon={'MdPersonOutline'}
+                  errorPadding={'normal'}
+                ></Input>
+              </motion.div>
+              <motion.div
+                initial={{ opacity: 0 }}
+                animate={{ opacity: 1 }}
+                transition={{ delay: 0.3, duration: 0.7 }}
+              >
+                <Input
                   onChange={emailChange}
-                  errorMessage={`Wrong email or doens't existe. Try again.`}
+                  errorMessage={`Invalid email or already used.`}
+                  required={true}
                   type={'email'}
                   name={'email'}
-                  errorIcon={emailInvalid}
                   errorPadding={'small'}
+                  errorIcon={emailInvalid}
                   placeholder={'Email'}
                   icon={'MdEmail'}
                 ></Input>
@@ -81,9 +94,9 @@ const LoginPage = () => {
               >
                 <Input
                   onChange={passwordChange}
-                  errorMessage={`Wrong password. Try again.`}
+                  errorPadding={'large'}
+                  errorMessage={`Password must have min 5 and max 20 characters with 1 letter, 1 number and 1 special character.`}
                   errorIcon={passwordInvalid}
-                  errorPadding={'small'}
                   type={'password'}
                   name={'password'}
                   placeholder={'Password'}
@@ -103,7 +116,7 @@ const LoginPage = () => {
                 onClick={handleSubmit}
                 buttonType="success"
                 fullWidth={true}
-                title={'Sign In'}
+                title={'Sign Up'}
               ></Button>
             </motion.div>
 
@@ -115,33 +128,21 @@ const LoginPage = () => {
               <Button
                 buttonType="pink"
                 fullWidth={true}
-                title={'Sign In with Google'}
+                title={'Sign Up with Google'}
               ></Button>
             </motion.div>
           </div>
-          <div className="flex justify-between pt-6">
+          <div className="flex justify-end pt-6">
             <motion.div
               initial={{ opacity: 0 }}
               animate={{ opacity: 1 }}
               transition={{ delay: 0.6, duration: 0.7 }}
             >
               <LinkButton
-                href={'/'}
+                href={'/auth/login'}
                 textSize={'small'}
                 textColor={'gray'}
-                title={'Forget password'}
-              ></LinkButton>
-            </motion.div>
-            <motion.div
-              initial={{ opacity: 0 }}
-              animate={{ opacity: 1 }}
-              transition={{ delay: 0.6, duration: 0.7 }}
-            >
-              <LinkButton
-                href={'/auth/register'}
-                textSize={'small'}
-                textColor={'gray'}
-                title={'Create account'}
+                title={'Login account'}
               ></LinkButton>
             </motion.div>
           </div>
@@ -151,4 +152,4 @@ const LoginPage = () => {
   );
 };
 
-export default LoginPage;
+export default Register;
