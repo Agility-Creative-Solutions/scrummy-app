@@ -69,9 +69,9 @@ const LoginPage = () => {
                   type={'email'}
                   name={'email'}
                   errorIcon={emailInvalid}
-                  errorPadding={'small'}
                   placeholder={'Email'}
                   icon={'MdEmail'}
+                  iconSize={'m'}
                 ></Input>
               </motion.div>
               <motion.div
@@ -83,12 +83,12 @@ const LoginPage = () => {
                   onChange={passwordChange}
                   errorMessage={`Wrong password. Try again.`}
                   errorIcon={passwordInvalid}
-                  errorPadding={'small'}
                   type={'password'}
                   name={'password'}
                   placeholder={'Password'}
                   required={true}
                   icon={'MdLock'}
+                  iconSize={'m'}
                 ></Input>
               </motion.div>
             </form>
