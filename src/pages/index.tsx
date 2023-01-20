@@ -184,3 +184,14 @@ const Index = () => {
 };
 
 export default Index;
+
+export const getStaticProps = async () => {
+  console.log(process.env.NEXT_PUBLIC_LOCAL_STORAGE_USER_KEY);
+
+  return {
+    props: {
+      title: 'Nextjs Boilerplate',
+      description: '',
+    },
+  };
+};
