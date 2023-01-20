@@ -67,7 +67,7 @@ const Register = () => {
                   errorIcon={userNameInvalid}
                   placeholder={'Your name'}
                   icon={'MdPersonOutline'}
-                  iconSize={'m'}
+                  iconSize={'md'}
                 ></Input>
               </motion.div>
               <motion.div
@@ -84,7 +84,7 @@ const Register = () => {
                   errorIcon={emailInvalid}
                   placeholder={'Email'}
                   icon={'MdEmail'}
-                  iconSize={'m'}
+                  iconSize={'md'}
                 ></Input>
               </motion.div>
               <motion.div
@@ -98,7 +98,7 @@ const Register = () => {
                   errorIcon={passwordInvalid}
                   type={'password'}
                   name={'password'}
-                  iconSize={'m'}
+                  iconSize={'md'}
                   placeholder={'Password'}
                   required={true}
                   icon={'MdLock'}

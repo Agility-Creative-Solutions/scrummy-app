@@ -13,7 +13,7 @@ export type InputProps = {
   required?: boolean;
   name?: string;
   value?: string;
-  iconSize?: 'xs' | 'sm' | 'm' | 'l' | 'xl';
+  iconSize?: 'xs' | 'sm' | 'md' | 'lg' | 'xl';
   errorMessage?: string;
   errorIcon?: boolean;
 };
@@ -52,8 +52,8 @@ const Input: React.FC<InputProps> = ({
                 size={cx({
                   '16': iconSize === 'xs',
                   '18': iconSize === 'sm',
-                  '22': iconSize === 'm',
-                  '24': iconSize === 'l',
+                  '22': iconSize === 'md',
+                  '24': iconSize === 'lg',
                   '28': iconSize === 'xl',
                 })}
               />

@@ -71,7 +71,7 @@ const LoginPage = () => {
                   errorIcon={emailInvalid}
                   placeholder={'Email'}
                   icon={'MdEmail'}
-                  iconSize={'m'}
+                  iconSize={'md'}
                 ></Input>
               </motion.div>
               <motion.div
@@ -88,7 +88,7 @@ const LoginPage = () => {
                   placeholder={'Password'}
                   required={true}
                   icon={'MdLock'}
-                  iconSize={'m'}
+                  iconSize={'md'}
                 ></Input>
               </motion.div>
             </form>
