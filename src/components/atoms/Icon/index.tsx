@@ -5,7 +5,7 @@ import * as md from 'react-icons/md';
 export type IconProps = {
   iconName: string;
   className?: string;
-  size?: number;
+  size?: string;
   color?: string;
 };
 
