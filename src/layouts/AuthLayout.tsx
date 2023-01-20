@@ -10,7 +10,7 @@ export type AuthLayoutProps = {
 
 const AuthLayout: React.FC<AuthLayoutProps> = ({ children }) => {
   return (
-    <div className="relative h-[100vh] w-[100vw] overflow-hidden bg-scrummyOrange-500 pt-20">
+    <div className="relative flex h-[100vh] w-[100vw] flex-col justify-center overflow-hidden bg-scrummyOrange-500">
       <motion.div
         className="absolute left-[-20px] top-[-80px]  h-[80vw] max-h-[1100px] min-h-[700px] w-[80vw] min-w-[700px] max-w-[1100px] rounded-full border-[2px] border-slate-50/50 object-cover"
         initial={{ scale: 1.0 }}
@@ -34,8 +34,8 @@ const AuthLayout: React.FC<AuthLayoutProps> = ({ children }) => {
         }}
       ></motion.div>
 
-      <div className="absolute h-[100vh] w-[100vw]">
-        <div className="mt-[10vh] sm:mt-[10vh]">
+      <div>
+        <div>
           <div className="mx-auto h-[72px] w-[72px] rounded-xl bg-white">
             <img src={LogoImg.src} alt="Logo-Image" className="m-auto pt-3" />
           </div>
