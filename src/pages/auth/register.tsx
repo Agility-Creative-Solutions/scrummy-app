@@ -67,7 +67,7 @@ const Register = () => {
                   errorIcon={userNameInvalid}
                   placeholder={'Your name'}
                   icon={'MdPersonOutline'}
-                  errorPadding={'normal'}
+                  iconSize={'md'}
                 ></Input>
               </motion.div>
               <motion.div
@@ -81,10 +81,10 @@ const Register = () => {
                   required={true}
                   type={'email'}
                   name={'email'}
-                  errorPadding={'small'}
                   errorIcon={emailInvalid}
                   placeholder={'Email'}
                   icon={'MdEmail'}
+                  iconSize={'md'}
                 ></Input>
               </motion.div>
               <motion.div
@@ -94,11 +94,11 @@ const Register = () => {
               >
                 <Input
                   onChange={passwordChange}
-                  errorPadding={'large'}
                   errorMessage={`Password must have min 5 and max 20 characters with 1 letter, 1 number and 1 special character.`}
                   errorIcon={passwordInvalid}
                   type={'password'}
                   name={'password'}
+                  iconSize={'md'}
                   placeholder={'Password'}
                   required={true}
                   icon={'MdLock'}
