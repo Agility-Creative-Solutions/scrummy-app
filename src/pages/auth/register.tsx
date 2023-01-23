@@ -3,7 +3,7 @@ import { useState } from 'react';
 
 import { Button, Input } from '@/components';
 import Card from '@/components/atoms/Card';
-import AuthLayout from '@/layouts/authLayout';
+import AuthLayout from '@/layouts/AuthLayout';
 
 import LinkButton from '../../components/atoms/LinkButton';
 import {
