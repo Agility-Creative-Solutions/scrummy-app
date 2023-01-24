@@ -4,7 +4,6 @@ import { useState } from 'react';
 import { Button, Input } from '@/components';
 import Card from '@/components/atoms/Card';
 import Modal from '@/components/atoms/Modal';
-import Toastify from '@/components/atoms/Toastify';
 
 import CheckBox from '../components/atoms/CheckBox';
 import IconButton from '../components/atoms/IconButton';
@@ -65,12 +64,6 @@ const DesignSystem = () => {
             textSize="normal"
             title="Clique Aqui"
           />
-          <Toastify
-            buttonLabel="Toastify Test"
-            label={'Scrummy Test'}
-            theme={'dark'}
-            position={'top-center'}
-          ></Toastify>
         </div>
         <div>
           <h4>Buttons</h4>
