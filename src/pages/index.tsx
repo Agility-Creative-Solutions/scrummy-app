@@ -1,10 +1,17 @@
 import { useRouter } from 'next/router';
 
+import { UseTostify } from '@/hooks/useTostify';
 import { Meta } from '@/layouts/Meta';
 import { Main } from '@/templates/Main';
 
 const Index = () => {
   const router = useRouter();
+
+  const handleOnClick = () => {
+    UseTostify({
+      label: 'Hello World',
+    });
+  };
 
   return (
     <Main
@@ -24,6 +31,13 @@ const Index = () => {
       <h1 className="text-2xl font-bold text-scrummyOrange-500">
         Boilerplate code for your Nextjs project with Tailwind CSS
       </h1>
+      <button
+        type="button"
+        className="rounded bg-scrummyOrange-500 py-2 px-4 font-bold text-white hover:bg-scrummyOrange-700"
+        onClick={handleOnClick}
+      >
+        Show Toast
+      </button>
       <p>
         <span role="img" aria-label="rocket">
           🚀
