@@ -24,7 +24,7 @@ const defaultOptions: ToastOptions = {
 const TOAST_CLASSNAME = {
   success: '!bg-scrummyGreen-500 !text-white',
   error: '!bg-scrummyRed-500 !text-white',
-  info: '!bg-scrummyBlue-500 !text-white',
+  info: '!bg-scrummyBlue-500 !text-blue-600',
   warning: '!bg-scrummyOrange-500 !text-white',
 };
 
