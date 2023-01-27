@@ -55,7 +55,6 @@ const LoginPage = () => {
               >
                 <Input
                   onChange={emailChange}
-                  errorMessage={`Wrong email or doens't existe. Try again.`}
                   type={'email'}
                   name={'email'}
                   errorIcon={emailInvalid}
@@ -71,7 +70,7 @@ const LoginPage = () => {
               >
                 <Input
                   onChange={passwordChange}
-                  errorMessage={`Wrong password. Try again.`}
+                  errorMessage={`Incorrect email or password. Try again.`}
                   errorIcon={passwordInvalid}
                   type={'password'}
                   name={'password'}
