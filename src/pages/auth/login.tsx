@@ -6,18 +6,13 @@ import Card from '@/components/atoms/Card';
 import AuthLayout from '@/layouts/AuthLayout';
 
 import LinkButton from '../../components/atoms/LinkButton';
+import UserService from '../../service/auth/service';
 
 const LoginPage = () => {
   const [email, setEmail] = useState('');
   const [emailInvalid, setEmailInvalid] = useState(false);
   const [passwordInvalid, setPasswordInvalid] = useState(false);
   const [password, setPassword] = useState('');
-
-  const testAcount = {
-    userName: 'ScrummyTest',
-    email: 'test@scrummypoker.com',
-    password: 'qwer1234',
-  };
 
   const passwordChange = (e: any) => {
     setPasswordInvalid(false);
@@ -29,22 +24,17 @@ const LoginPage = () => {
     setEmail(e.target.value);
   };
 
-  const handleSubmit = (e: React.ChangeEvent<HTMLInputElement>) => {
+  const handleSubmit = async (e: React.ChangeEvent<HTMLInputElement>) => {
     e.preventDefault();
 
-    if (email === testAcount.email) {
-      setEmailInvalid(false);
-    } else {
-      setEmailInvalid(true);
-    }
-    if (password === testAcount.password || password.length <= 5) {
-      setPasswordInvalid(false);
-    } else {
-      setPasswordInvalid(true);
-    }
-
-    if (email === testAcount.email && password === testAcount.password) {
-      alert(`Login maded with sucess. Welcome ${email}!!`);
+    try {
+      const response = await UserService.login({ email, password });
+      if (response.message === 'Incorrect email or password') {
+        setEmailInvalid(true);
+        setPasswordInvalid(true);
+      }
+    } catch (error) {
+      console.log(error);
     }
   };
 
