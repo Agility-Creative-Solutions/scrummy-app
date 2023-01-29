@@ -7,6 +7,7 @@ import AuthLayout from '@/layouts/AuthLayout';
 
 import LinkButton from '../../components/atoms/LinkButton';
 import UserService from '../../service/auth/service';
+import { emailValidation, passwordValidation } from '../../utils/auth';
 
 const LoginPage = () => {
   const [email, setEmail] = useState('');
@@ -29,12 +30,25 @@ const LoginPage = () => {
 
     try {
       const response = await UserService.login({ email, password });
-      if (response.message === 'Incorrect email or password') {
+      emailValidation(email, setEmailInvalid);
+      // create e toast message;
+      passwordValidation(password, setPasswordInvalid);
+      // create a toast message that say Password must have min 5 and max 20 characters with 1 letter, 1 number and 1 special character;
+      if (response.message) {
+        setEmailInvalid(true);
+        setPasswordInvalid(true);
+      } else if (response.user.email === email) {
+        setEmailInvalid(false);
+        setPasswordInvalid(false);
+        if (response.user.isEmailVerified === false) {
+          // create a toast message saying "Verify ur email account"
+        }
+      } else {
         setEmailInvalid(true);
         setPasswordInvalid(true);
       }
     } catch (error) {
-      console.log(error);
+      console.error(error);
     }
   };
 
