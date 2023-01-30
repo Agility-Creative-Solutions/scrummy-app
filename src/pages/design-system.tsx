@@ -4,6 +4,7 @@ import { useState } from 'react';
 import { Button, Input } from '@/components';
 import Card from '@/components/atoms/Card';
 import Modal from '@/components/atoms/Modal';
+import ActionBar from '@/components/mols/ActionBar';
 
 import CheckBox from '../components/atoms/CheckBox';
 import IconButton from '../components/atoms/IconButton';
@@ -160,6 +161,26 @@ const DesignSystem = () => {
           </AnimatePresence>
         </div>
       </div>
+
+      <ActionBar
+        actions={[
+          {
+            icon: 'MdInput',
+            text: 'Design System',
+            href: '/design-system',
+          },
+          {
+            icon: 'MdInput',
+            text: 'Create Lobby',
+            href: '/lobby',
+          },
+          {
+            icon: 'MdInput',
+            text: 'Profile',
+            href: '/profile',
+          },
+        ]}
+      />
     </div>
   );
 };
