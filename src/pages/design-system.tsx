@@ -10,6 +10,7 @@ import IconButton from '../components/atoms/IconButton';
 import LinkButton from '../components/atoms/LinkButton';
 import ProgressBar from '../components/atoms/ProgressBar';
 import RadioButton from '../components/atoms/RadioButton';
+import ActionBar from '../components/mols/ActionBar';
 
 const DesignSystem = () => {
   const [checkboxOne, setCheckboxOne] = useState(false);
@@ -64,6 +65,9 @@ const DesignSystem = () => {
             textSize="normal"
             title="Clique Aqui"
           />
+          <div>
+            <ActionBar />
+          </div>
         </div>
         <div>
           <h4>Buttons</h4>

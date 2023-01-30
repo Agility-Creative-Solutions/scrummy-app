@@ -4,20 +4,24 @@ import React from 'react';
 
 import Icon  from "../Icon";
 
-export type IconProps = {
-  size?: number;
+export type IconButtonProps = {
+  buttonSize?: number;
+  color?: string;
   href?: string;
   onClick?: () => void;
-  icon: string;
+  icon: string
+  iconSize?: string;
   iconType?: 'primary' | 'pink' | 'success' | 'warning' | 'danger';
 };
 
-const IconButton: React.FC<IconProps> = ({
+const IconButton: React.FC<IconButtonProps> = ({
   href,
   onClick,
+  color,
   icon,
   iconType,
-  size = 50,
+  iconSize = '30',
+  buttonSize = 50,
 }) => {
   
   return (
@@ -35,12 +39,14 @@ const IconButton: React.FC<IconProps> = ({
     onClick={onClick}
     >
       <div className='m-auto flex items-center justify-center' style={{
-        height: size,
-        width: size,
+        height: buttonSize,
+        width: buttonSize,
       }}>
         <>
-          <Icon 
+          <Icon
             iconName={icon}
+            size={iconSize}
+            color={color}
           />
         </>
       </div>
