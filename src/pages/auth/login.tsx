@@ -48,7 +48,7 @@ const LoginPage = () => {
         setPasswordInvalid(true);
       }
     } catch (error) {
-      console.error(error);
+      console.log(error);
     }
   };
 
