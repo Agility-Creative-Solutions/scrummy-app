@@ -38,9 +38,13 @@ const Register = () => {
   const handleSubmit = (e: React.ChangeEvent<HTMLInputElement>) => {
     e.preventDefault();
 
-    emailValidation(email, setEmailInvalid);
-    passwordValidation(password, setPasswordInvalid);
-    userNameValidation(userName, setuserNameInvalid);
+    if (emailValidation(email) === false) {
+      setEmailInvalid(true);
+    }
+    if (passwordValidation(password) === false) {
+      setPasswordInvalid(true);
+    }
+    if (userNameValidation(userName) === false) setuserNameInvalid(true);
   };
 
   return (
