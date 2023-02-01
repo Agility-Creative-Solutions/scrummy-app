@@ -35,20 +35,3 @@ export const UseTostify = ({ type = 'info', label, options }: ITostifyProps) =>
     ...options,
     className: [TOAST_CLASSNAME[type], options?.className].join(' '),
   });
-
-// useTostify({
-//   type: 'success',
-//   label: 'Hello World',
-//   options: {
-//     position: 'top-left',
-//     autoClose: 5000,
-//    }
-// })
-
-// useTostify({
-//   type: 'success',
-//   label: 'Hello World',
-//   options: {
-//     className: 'bg-scrummyOrange-500',
-//    }
-// })

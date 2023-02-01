@@ -4,6 +4,7 @@ import { useState } from 'react';
 import { Button, Input } from '@/components';
 import Card from '@/components/atoms/Card';
 import Modal from '@/components/atoms/Modal';
+import type { TostifyType } from '@/hooks/useTostify';
 import { UseTostify } from '@/hooks/useTostify';
 
 import CheckBox from '../components/atoms/CheckBox';
@@ -15,28 +16,8 @@ import RadioButton from '../components/atoms/RadioButton';
 const DesignSystem = () => {
   const [checkboxOne, setCheckboxOne] = useState(false);
   const [checkboxTwo, setCheckboxTwo] = useState(true);
-  const handleToastInfo = () => {
-    UseTostify({
-      label: 'Hello World',
-    });
-  };
-  const handleToastSuccess = () => {
-    UseTostify({
-      label: 'Hello World',
-      type: 'success',
-    });
-  };
-  const handleToastWarning = () => {
-    UseTostify({
-      label: 'Hello World',
-      type: 'warning',
-    });
-  };
-  const handleToastError = () => {
-    UseTostify({
-      label: 'Hello World',
-      type: 'error',
-    });
+  const handleToast = (label: string, type: TostifyType) => {
+    UseTostify({ label, type });
   };
 
   const [modal, setModal] = useState(false);
@@ -50,7 +31,7 @@ const DesignSystem = () => {
             <button
               type="button"
               className="rounded bg-info py-2 px-4 font-bold text-white hover:bg-blue-700"
-              onClick={handleToastInfo}
+              onClick={() => handleToast('Hello world', 'info')}
             >
               Show Toast Info
             </button>
@@ -60,7 +41,7 @@ const DesignSystem = () => {
             <button
               type="button"
               className="rounded bg-scrummyGreen-500 py-2 px-4 font-bold text-white hover:bg-scrummyGreen-700"
-              onClick={handleToastSuccess}
+              onClick={() => handleToast('Hello world', 'success')}
             >
               Show Toast Info
             </button>
@@ -70,7 +51,7 @@ const DesignSystem = () => {
             <button
               type="button"
               className="rounded bg-scrummyYellow-500 py-2 px-4 font-bold text-white hover:bg-scrummyYellow-700"
-              onClick={handleToastWarning}
+              onClick={() => handleToast('Hello world', 'warning')}
             >
               Show Toast Info
             </button>
@@ -80,7 +61,7 @@ const DesignSystem = () => {
             <button
               type="button"
               className="rounded bg-scrummyRed-500 py-2 px-4 font-bold text-white hover:bg-scrummyRed-700"
-              onClick={handleToastError}
+              onClick={() => handleToast('Hello world', 'error')}
             >
               Show Toast Info
             </button>
