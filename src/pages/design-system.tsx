@@ -4,6 +4,7 @@ import { useState } from 'react';
 import { Button, Input } from '@/components';
 import Card from '@/components/atoms/Card';
 import Modal from '@/components/atoms/Modal';
+import { UseTostify } from '@/hooks/useTostify';
 
 import CheckBox from '../components/atoms/CheckBox';
 import IconButton from '../components/atoms/IconButton';
@@ -14,12 +15,77 @@ import RadioButton from '../components/atoms/RadioButton';
 const DesignSystem = () => {
   const [checkboxOne, setCheckboxOne] = useState(false);
   const [checkboxTwo, setCheckboxTwo] = useState(true);
+  const handleToastInfo = () => {
+    UseTostify({
+      label: 'Hello World',
+    });
+  };
+  const handleToastSuccess = () => {
+    UseTostify({
+      label: 'Hello World',
+      type: 'success',
+    });
+  };
+  const handleToastWarning = () => {
+    UseTostify({
+      label: 'Hello World',
+      type: 'warning',
+    });
+  };
+  const handleToastError = () => {
+    UseTostify({
+      label: 'Hello World',
+      type: 'error',
+    });
+  };
 
   const [modal, setModal] = useState(false);
   const toggleModal = () => setModal((currentValue) => !currentValue);
   return (
     <div style={{ backgroundColor: '#e3e3e3', padding: 20 }}>
       <div className="grid grid-cols-1 gap-10 px-10 md:grid-cols-3">
+        <div>
+          <h4>Toast Button</h4>
+          <div>
+            <button
+              type="button"
+              className="rounded bg-info py-2 px-4 font-bold text-white hover:bg-blue-700"
+              onClick={handleToastInfo}
+            >
+              Show Toast Info
+            </button>
+          </div>
+          <div>
+            <br />
+            <button
+              type="button"
+              className="rounded bg-scrummyGreen-500 py-2 px-4 font-bold text-white hover:bg-scrummyGreen-700"
+              onClick={handleToastSuccess}
+            >
+              Show Toast Info
+            </button>
+          </div>
+          <div>
+            <br />
+            <button
+              type="button"
+              className="rounded bg-scrummyYellow-500 py-2 px-4 font-bold text-white hover:bg-scrummyYellow-700"
+              onClick={handleToastWarning}
+            >
+              Show Toast Info
+            </button>
+          </div>
+          <div>
+            <br />
+            <button
+              type="button"
+              className="rounded bg-scrummyRed-500 py-2 px-4 font-bold text-white hover:bg-scrummyRed-700"
+              onClick={handleToastError}
+            >
+              Show Toast Info
+            </button>
+          </div>
+        </div>
         <div>
           <h4>Inputs</h4>
           <Input

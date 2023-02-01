@@ -13,8 +13,9 @@ export interface ITostifyProps {
 
 const defaultOptions: ToastOptions = {
   position: 'top-right',
+  theme: 'dark',
   autoClose: 5000,
-  hideProgressBar: false,
+  hideProgressBar: true,
   closeOnClick: true,
   pauseOnHover: true,
   draggable: true,
@@ -22,10 +23,10 @@ const defaultOptions: ToastOptions = {
 };
 
 const TOAST_CLASSNAME = {
-  success: '!bg-scrummyGreen-500 !text-white',
-  error: '!bg-scrummyRed-500 !text-white',
-  info: '!bg-scrummyBlue-500 !text-blue-600',
-  warning: '!bg-scrummyOrange-500 !text-white',
+  success: '!bg-dark-100 !text-light-100',
+  error: '!bg-dark-100 !text-light-100',
+  info: '!bg-dark-100 !text-light-100',
+  warning: '!bg-dark-100 !text-light-100',
 };
 
 export const UseTostify = ({ type = 'info', label, options }: ITostifyProps) =>
