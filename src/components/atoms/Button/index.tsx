@@ -46,7 +46,7 @@ const Button: React.FC<ButtonProps> = ({
         <Loader />
       ) : (
         <>
-          <div className="mx-auto flex items-center justify-center gap-5 text-center">
+          <div className="mx-auto flex w-full items-center justify-center gap-5 text-center">
             {icon && (
               <span className=" text-xl">{<Icon iconName={icon} />}</span>
             )}

@@ -14,7 +14,7 @@ const LoginPage = () => {
   const [emailInvalid, setEmailInvalid] = useState(false);
   const [passwordInvalid, setPasswordInvalid] = useState(false);
   const [password, setPassword] = useState('');
-
+  const [isLoading, setIsLoading] = useState(false);
   const passwordChange = (e: any) => {
     setPasswordInvalid(false);
     setPassword(e.target.value);
@@ -27,9 +27,11 @@ const LoginPage = () => {
 
   const handleSubmit = async (e: React.ChangeEvent<HTMLInputElement>) => {
     e.preventDefault();
+    setIsLoading(true);
 
     try {
       const response = await UserService.login({ email, password });
+      setIsLoading(false);
       if (emailValidation(email) === false) {
         setEmailInvalid(true);
       }
@@ -52,6 +54,7 @@ const LoginPage = () => {
         setPasswordInvalid(true);
       }
     } catch (error) {
+      setIsLoading(false);
       // create toast that say {something goes wrong, try again.}
     }
   };
@@ -107,6 +110,7 @@ const LoginPage = () => {
               transition={{ delay: 0.5, duration: 0.7 }}
             >
               <Button
+                isLoading={isLoading}
                 onClick={handleSubmit}
                 buttonType="success"
                 fullWidth={true}
@@ -120,6 +124,7 @@ const LoginPage = () => {
               transition={{ delay: 0.6, duration: 0.7 }}
             >
               <Button
+                isLoading={isLoading}
                 buttonType="pink"
                 fullWidth={true}
                 title={'Sign In with Google'}
