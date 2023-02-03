@@ -3,6 +3,8 @@ import { useState } from 'react';
 
 import { Button, Input } from '@/components';
 import Card from '@/components/atoms/Card';
+import type { TostifyType } from '@/hooks/useTostify';
+import { UseTostify } from '@/hooks/useTostify';
 import AuthLayout from '@/layouts/AuthLayout';
 
 import LinkButton from '../../components/atoms/LinkButton';
@@ -15,6 +17,9 @@ const LoginPage = () => {
   const [passwordInvalid, setPasswordInvalid] = useState(false);
   const [password, setPassword] = useState('');
   const [isLoading, setIsLoading] = useState(false);
+  const handleToast = (label: string, type?: TostifyType) => {
+    UseTostify({ label, type });
+  };
   const passwordChange = (e: any) => {
     setPasswordInvalid(false);
     setPassword(e.target.value);
@@ -35,11 +40,13 @@ const LoginPage = () => {
       if (emailValidation(email) === false) {
         setEmailInvalid(true);
       }
-      // create e toast message;
       if (passwordValidation(password) === false) {
         setPasswordInvalid(true);
+        handleToast(
+          'Password must have min 5 and max 20 characters with 1 letter, 1 number and 1 special character',
+          'warning'
+        );
       }
-      // create a toast message that say Password must have min 5 and max 20 characters with 1 letter, 1 number and 1 special character;
       if (!response.user) {
         setEmailInvalid(true);
         setPasswordInvalid(true);
@@ -47,7 +54,7 @@ const LoginPage = () => {
         setEmailInvalid(false);
         setPasswordInvalid(false);
         if (response.user.isEmailVerified === false) {
-          // create a toast message saying "Verify ur email account and try again"
+          handleToast('You must verify your email account.', 'warning');
         }
       } else {
         setEmailInvalid(true);
@@ -55,7 +62,7 @@ const LoginPage = () => {
       }
     } catch (error) {
       setIsLoading(false);
-      // create toast that say {something goes wrong, try again.}
+      handleToast('Oops. Something went wrong', 'error');
     }
   };
 
