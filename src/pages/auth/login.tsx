@@ -29,36 +29,16 @@ const LoginPage = () => {
     setEmailInvalid(false);
     setEmail(e.target.value);
   };
-
-  const handleSubmit = async (e: React.ChangeEvent<HTMLInputElement>) => {
-    e.preventDefault();
-    setIsLoading(true);
-
+  const handleLogin = async () => {
     try {
       const response = await UserService.login({ email, password });
       setIsLoading(false);
-      if (emailValidation(email) === false) {
-        setEmailInvalid(true);
-      }
-      if (passwordValidation(password) === false) {
-        setPasswordInvalid(true);
-        handleToast(
-          'Password must have min 5 and max 20 characters with 1 letter, 1 number and 1 special character',
-          'warning'
-        );
-      }
       if (!response.user) {
         setEmailInvalid(true);
         setPasswordInvalid(true);
-      } else if (response.user.email === email) {
-        setEmailInvalid(false);
-        setPasswordInvalid(false);
-        if (response.user.isEmailVerified === false) {
-          handleToast('You must verify your email account.', 'warning');
-        }
-      } else {
-        setEmailInvalid(true);
-        setPasswordInvalid(true);
+      }
+      if (response.user.isEmailVerified === false) {
+        handleToast('You must verify your email account.', 'warning');
       }
     } catch (error) {
       setIsLoading(false);
@@ -66,6 +46,26 @@ const LoginPage = () => {
     }
   };
 
+  const handleSubmit = async (e: React.ChangeEvent<HTMLInputElement>) => {
+    e.preventDefault();
+    setIsLoading(true);
+    if (!emailValidation(email)) {
+      setEmailInvalid(true);
+      setPasswordInvalid(true);
+      setIsLoading(false);
+      return false;
+    }
+    if (!passwordValidation(password)) {
+      setPasswordInvalid(true);
+      setIsLoading(false);
+      handleToast(
+        'Password must have min 5 and max 20 characters with 1 letter, 1 number and 1 special character',
+        'warning'
+      );
+      return false;
+    }
+    return handleLogin();
+  };
   return (
     <AuthLayout>
       <motion.div
