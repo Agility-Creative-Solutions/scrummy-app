@@ -1,5 +1,5 @@
+import type { LogInType } from '../../types/auth/login';
 import http from '../http.service';
-import type { LogInType } from './types';
 
 const UserService = {
   login: async (data: LogInType) => {

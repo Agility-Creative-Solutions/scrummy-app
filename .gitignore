@@ -40,4 +40,4 @@ local
 .vercel
 
 # dot env
-.env*
+*.env
