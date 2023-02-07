@@ -1,4 +1,5 @@
 import { motion } from 'framer-motion';
+import useRouter from 'next/router';
 import { useState } from 'react';
 
 import { Button, Input } from '@/components';
@@ -36,9 +37,12 @@ const LoginPage = () => {
       if (!response.user) {
         setEmailInvalid(true);
         setPasswordInvalid(true);
+        return;
       }
       if (response.user.isEmailVerified === false) {
         handleToast('You must verify your email account.', 'warning');
+      } else {
+        useRouter.push('/auth/dashboard');
       }
     } catch (error) {
       setIsLoading(false);
