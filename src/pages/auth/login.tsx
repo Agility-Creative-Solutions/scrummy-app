@@ -34,6 +34,8 @@ const LoginPage = () => {
     try {
       const response = await UserService.login({ email, password });
       setIsLoading(false);
+      setEmailInvalid(false);
+      setPasswordInvalid(false);
       if (!response.user) {
         setEmailInvalid(true);
         setPasswordInvalid(true);
@@ -63,7 +65,7 @@ const LoginPage = () => {
       setPasswordInvalid(true);
       setIsLoading(false);
       handleToast(
-        'Password must have min 5 and max 20 characters with 1 letter, 1 number and 1 special character',
+        'Password must have min 8 characters, at least 1 letter and 1 number',
         'warning'
       );
       return false;

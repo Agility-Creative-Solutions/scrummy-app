@@ -5,8 +5,7 @@ const userNameValidation = (userName: any) => {
 };
 
 const passwordValidation = (password: any) => {
-  const regEx =
-    /^(?=.*[a-zA-Z])(?=.*\d)(?=.*[!@#$%^&*()_+])[A-Za-z\d][A-Za-z\d!@#$%^&*()_+]{5,20}$/;
+  const regEx = /^(?=.*[A-Za-z])(?=.*\d)[A-Za-z\d]{8,}$/;
   const validation = regEx.test(password);
   return validation;
 };
