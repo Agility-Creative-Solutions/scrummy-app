@@ -2,7 +2,7 @@ import React from 'react';
 
 const Loader: React.FC = () => {
   return (
-    <div role="status">
+    <div role="status" className="m-auto">
       <svg
         aria-hidden="true"
         className="h-3 w-3 animate-spin fill-white text-white dark:text-transparent"

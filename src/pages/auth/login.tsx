@@ -1,24 +1,26 @@
 import { motion } from 'framer-motion';
+import useRouter from 'next/router';
 import { useState } from 'react';
 
 import { Button, Input } from '@/components';
 import Card from '@/components/atoms/Card';
+import type { TostifyType } from '@/hooks/useTostify';
+import { UseTostify } from '@/hooks/useTostify';
 import AuthLayout from '@/layouts/AuthLayout';
 
 import LinkButton from '../../components/atoms/LinkButton';
+import UserService from '../../service/auth/service';
+import { emailValidation, passwordValidation } from '../../utils/auth';
 
 const LoginPage = () => {
   const [email, setEmail] = useState('');
   const [emailInvalid, setEmailInvalid] = useState(false);
   const [passwordInvalid, setPasswordInvalid] = useState(false);
   const [password, setPassword] = useState('');
-
-  const testAcount = {
-    userName: 'ScrummyTest',
-    email: 'test@scrummypoker.com',
-    password: 'qwer1234',
+  const [isLoading, setIsLoading] = useState(false);
+  const handleToast = (label: string, type?: TostifyType) => {
+    UseTostify({ label, type });
   };
-
   const passwordChange = (e: any) => {
     setPasswordInvalid(false);
     setPassword(e.target.value);
@@ -28,26 +30,48 @@ const LoginPage = () => {
     setEmailInvalid(false);
     setEmail(e.target.value);
   };
-
-  const handleSubmit = (e: React.ChangeEvent<HTMLInputElement>) => {
-    e.preventDefault();
-
-    if (email === testAcount.email) {
+  const handleLogin = async () => {
+    try {
+      const response = await UserService.login({ email, password });
+      setIsLoading(false);
       setEmailInvalid(false);
-    } else {
-      setEmailInvalid(true);
-    }
-    if (password === testAcount.password || password.length <= 5) {
       setPasswordInvalid(false);
-    } else {
-      setPasswordInvalid(true);
-    }
-
-    if (email === testAcount.email && password === testAcount.password) {
-      alert(`Login maded with sucess. Welcome ${email}!!`);
+      if (!response.user) {
+        setEmailInvalid(true);
+        setPasswordInvalid(true);
+        return;
+      }
+      if (response.user.isEmailVerified === false) {
+        handleToast('You must verify your email account.', 'warning');
+      } else {
+        useRouter.push('/auth/dashboard');
+      }
+    } catch (error) {
+      setIsLoading(false);
+      handleToast('Oops. Something went wrong', 'error');
     }
   };
 
+  const handleSubmit = async (e: React.ChangeEvent<HTMLInputElement>) => {
+    e.preventDefault();
+    setIsLoading(true);
+    if (!emailValidation(email)) {
+      setEmailInvalid(true);
+      setPasswordInvalid(true);
+      setIsLoading(false);
+      return false;
+    }
+    if (!passwordValidation(password)) {
+      setPasswordInvalid(true);
+      setIsLoading(false);
+      handleToast(
+        'Password must have min 8 characters, at least 1 letter and 1 number',
+        'warning'
+      );
+      return false;
+    }
+    return handleLogin();
+  };
   return (
     <AuthLayout>
       <motion.div
@@ -65,7 +89,6 @@ const LoginPage = () => {
               >
                 <Input
                   onChange={emailChange}
-                  errorMessage={`Wrong email or doens't existe. Try again.`}
                   type={'email'}
                   name={'email'}
                   errorIcon={emailInvalid}
@@ -81,7 +104,7 @@ const LoginPage = () => {
               >
                 <Input
                   onChange={passwordChange}
-                  errorMessage={`Wrong password. Try again.`}
+                  errorMessage={`Incorrect email or password. Try again.`}
                   errorIcon={passwordInvalid}
                   type={'password'}
                   name={'password'}
@@ -100,6 +123,7 @@ const LoginPage = () => {
               transition={{ delay: 0.5, duration: 0.7 }}
             >
               <Button
+                isLoading={isLoading}
                 onClick={handleSubmit}
                 buttonType="success"
                 fullWidth={true}
@@ -113,6 +137,7 @@ const LoginPage = () => {
               transition={{ delay: 0.6, duration: 0.7 }}
             >
               <Button
+                isLoading={isLoading}
                 buttonType="pink"
                 fullWidth={true}
                 title={'Sign In with Google'}

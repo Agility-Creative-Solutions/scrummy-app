@@ -38,3 +38,6 @@ local
 
 # vercel
 .vercel
+
+# dot env
+*.env

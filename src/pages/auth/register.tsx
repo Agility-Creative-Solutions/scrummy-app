@@ -14,14 +14,14 @@ import {
 
 const Register = () => {
   const [userName, setuserName] = useState('');
-  const [userNameInvalid, setuserNameInvalid] = useState(false);
+  const [userNameInvalid, setUserNameInvalid] = useState(false);
   const [email, setEmail] = useState('');
   const [emailInvalid, setEmailInvalid] = useState(false);
   const [passwordInvalid, setPasswordInvalid] = useState(false);
   const [password, setPassword] = useState('');
 
   const userNameChange = (e: any) => {
-    setuserNameInvalid(false);
+    setUserNameInvalid(false);
     setuserName(e.target.value);
   };
 
@@ -38,9 +38,13 @@ const Register = () => {
   const handleSubmit = (e: React.ChangeEvent<HTMLInputElement>) => {
     e.preventDefault();
 
-    emailValidation(email, setEmailInvalid);
-    passwordValidation(password, setPasswordInvalid);
-    userNameValidation(userName, setuserNameInvalid);
+    if (!emailValidation(email)) {
+      setEmailInvalid(true);
+    }
+    if (!passwordValidation(password)) {
+      setPasswordInvalid(true);
+    }
+    if (!userNameValidation(userName)) setUserNameInvalid(true);
   };
 
   return (
