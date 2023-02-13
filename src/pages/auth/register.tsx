@@ -39,10 +39,8 @@ const Register = () => {
     setEmailInvalid(false);
     setEmail(e.target.value);
   };
-  const handleToast = (label: string, type?: TostifyType) => {
+  const handleToast = (label: string, type?: TostifyType) =>
     UseTostify({ label, type });
-  };
-
   const handleRegister = async () => {
     try {
       const response = await UserService.register({
@@ -107,7 +105,7 @@ const Register = () => {
               >
                 <Input
                   onChange={userNameChange}
-                  errorMessage={`Username should be 2-29 characters without special character!`}
+                  errorMessage={`User name should be 2-29 characters without special character!`}
                   type={'text'}
                   required={true}
                   name={'userName'}
