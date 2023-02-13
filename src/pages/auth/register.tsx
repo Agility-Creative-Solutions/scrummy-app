@@ -1,11 +1,15 @@
 import { motion } from 'framer-motion';
+import useRouter from 'next/router';
 import { useState } from 'react';
 
 import { Button, Input } from '@/components';
 import Card from '@/components/atoms/Card';
+import type { TostifyType } from '@/hooks/useTostify';
+import { UseTostify } from '@/hooks/useTostify';
 import AuthLayout from '@/layouts/AuthLayout';
 
 import LinkButton from '../../components/atoms/LinkButton';
+import UserService from '../../service/auth/service';
 import {
   emailValidation,
   passwordValidation,
@@ -13,8 +17,9 @@ import {
 } from '../../utils/auth';
 
 const Register = () => {
-  const [userName, setuserName] = useState('');
+  const [name, setName] = useState('');
   const [userNameInvalid, setUserNameInvalid] = useState(false);
+  const [isLoading, setIsLoading] = useState(false);
   const [email, setEmail] = useState('');
   const [emailInvalid, setEmailInvalid] = useState(false);
   const [passwordInvalid, setPasswordInvalid] = useState(false);
@@ -22,7 +27,7 @@ const Register = () => {
 
   const userNameChange = (e: any) => {
     setUserNameInvalid(false);
-    setuserName(e.target.value);
+    setName(e.target.value);
   };
 
   const passwordChange = (e: any) => {
@@ -34,17 +39,53 @@ const Register = () => {
     setEmailInvalid(false);
     setEmail(e.target.value);
   };
+  const handleToast = (label: string, type?: TostifyType) =>
+    UseTostify({ label, type });
+  const handleRegister = async () => {
+    try {
+      const response = await UserService.register({
+        name,
+        email,
+        password,
+      });
+      setIsLoading(false);
+      if (!response.user) {
+        handleToast('Email already taken.', 'warning');
+        return;
+      }
+      handleToast(
+        `Welcome to scrummy ${response.user.name}!!.
+      Verify your email account`,
+        'success'
+      );
+      useRouter.push('/auth/dashboard');
+    } catch (error) {
+      setIsLoading(false);
+      handleToast('Oops. Something went wrong.', 'error');
+    }
+  };
 
   const handleSubmit = (e: React.ChangeEvent<HTMLInputElement>) => {
     e.preventDefault();
+    setIsLoading(true);
 
     if (!emailValidation(email)) {
+      setIsLoading(false);
+      setPasswordInvalid(true);
       setEmailInvalid(true);
+      return false;
     }
     if (!passwordValidation(password)) {
+      setIsLoading(false);
       setPasswordInvalid(true);
+      return false;
     }
-    if (!userNameValidation(userName)) setUserNameInvalid(true);
+    if (!userNameValidation(name)) {
+      setIsLoading(false);
+      setUserNameInvalid(true);
+      return false;
+    }
+    return handleRegister();
   };
 
   return (
@@ -64,7 +105,7 @@ const Register = () => {
               >
                 <Input
                   onChange={userNameChange}
-                  errorMessage={`userName should be 2-29 characters without number or special character!`}
+                  errorMessage={`User name should be 2-29 characters without special character!`}
                   type={'text'}
                   required={true}
                   name={'userName'}
@@ -98,7 +139,7 @@ const Register = () => {
               >
                 <Input
                   onChange={passwordChange}
-                  errorMessage={`Password must have min 5 and max 20 characters with 1 letter, 1 number and 1 special character.`}
+                  errorMessage={`Password must have min 8 characters with 1 letter and 1 number..`}
                   errorIcon={passwordInvalid}
                   type={'password'}
                   name={'password'}
@@ -117,6 +158,7 @@ const Register = () => {
               transition={{ delay: 0.5, duration: 0.7 }}
             >
               <Button
+                isLoading={isLoading}
                 onClick={handleSubmit}
                 buttonType="success"
                 fullWidth={true}
@@ -130,6 +172,7 @@ const Register = () => {
               transition={{ delay: 0.6, duration: 0.7 }}
             >
               <Button
+                isLoading={isLoading}
                 buttonType="pink"
                 fullWidth={true}
                 title={'Sign Up with Google'}

@@ -1,5 +1,5 @@
 const userNameValidation = (userName: any) => {
-  const regEx = /^[a-zA-Z\s]{2,29}$/;
+  const regEx = /^[a-zA-Z0-9\s]{2,29}$/;
   const validation = regEx.test(userName);
   return validation;
 };

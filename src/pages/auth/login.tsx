@@ -65,7 +65,7 @@ const LoginPage = () => {
       setPasswordInvalid(true);
       setIsLoading(false);
       handleToast(
-        'Password must have min 8 characters, at least 1 letter and 1 number',
+        'Password must have min 8 characters with 1 letter and 1 number',
         'warning'
       );
       return false;

@@ -4,7 +4,7 @@ export interface LogInType {
 }
 
 export interface RegisterAccountType {
-  username: string;
+  name: string;
   email: string;
   password: string;
 }
