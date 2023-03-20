@@ -151,7 +151,7 @@ const LoginPage = () => {
               transition={{ delay: 0.6, duration: 0.7 }}
             >
               <LinkButton
-                href={'/'}
+                href={'/auth/forget-password'}
                 textSize={'small'}
                 textColor={'gray'}
                 title={'Forget password'}
