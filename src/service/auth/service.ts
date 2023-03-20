@@ -14,8 +14,8 @@ const UserService = {
     const response = await http.POST('/auth/register', data);
     return response;
   },
-  resetPassword: async (data: ResetPassword) => {
-    const response = await http.PATCH(`/auth/reset-password/:resetCode`, data);
+  resetPassword: async (data: ResetPassword, token?: string) => {
+    const response = await http.PATCH(`/auth/reset-password/${token}`, data);
     return response;
   },
 };

@@ -1,5 +1,6 @@
 import { motion } from 'framer-motion';
-import { useState } from 'react';
+import { useRouter } from 'next/router';
+import { useEffect, useState } from 'react';
 
 import { Button, Input } from '@/components';
 import Card from '@/components/atoms/Card';
@@ -12,40 +13,58 @@ import UserService from '../../service/auth/service';
 import { passwordValidation } from '../../utils/auth';
 
 const ResetPasswordPage = () => {
+  const router = useRouter();
+  const { token } = router.query;
+
   const [confirmPassword, setConfirmPassword] = useState('');
   const [passwordInvalid, setPasswordInvalid] = useState(false);
   const [confirmPasswordInvalid, setConfirmPasswordInvalid] = useState(false);
   const [password, setPassword] = useState('');
   const [isLoading, setIsLoading] = useState(false);
+
   const handleToast = (label: string, type?: TostifyType) => {
     UseTostify({ label, type });
   };
+
   const passwordChange = (e: any) => {
     setPasswordInvalid(false);
     setPassword(e.target.value);
   };
+
   const confirmPasswordChange = (e: any) => {
     setConfirmPasswordInvalid(false);
     setConfirmPassword(e.target.value);
   };
+
   const handleResetPassword = async () => {
     try {
-      const response = await UserService.resetPassword({
-        password,
-        confirmPassword,
-      });
-      console.log(response);
-      handleToast('Password changed with success!', 'success');
-      setIsLoading(false);
+      const response = await UserService.resetPassword(
+        {
+          password,
+          confirmPassword,
+        },
+        token as string
+      );
+
+      if (response.status === 200) {
+        handleToast(
+          'Password successfully changed! Redirecting to login...',
+          'success'
+        );
+        setTimeout(() => {
+          router.push('/auth/login');
+        }, 2000);
+      }
     } catch (error) {
       setIsLoading(false);
-      handleToast('Oops. Something went wrong', 'error');
+      handleToast('Oops. Something went wrong. Please try again', 'error');
     }
   };
 
   const handleSubmit = async (e: React.ChangeEvent<HTMLInputElement>) => {
     e.preventDefault();
     setIsLoading(true);
+
     if (!passwordValidation(password)) {
       setPasswordInvalid(true);
       setConfirmPasswordInvalid(true);
@@ -59,12 +78,25 @@ const ResetPasswordPage = () => {
     if (password !== '' && password !== confirmPassword) {
       setIsLoading(false);
       setConfirmPasswordInvalid(true);
-      handleToast(`Password and confirmed password doesn't match`, 'warning');
+      handleToast(
+        `Passwords doesn't match. Please write both passwords again`,
+        'warning'
+      );
     }
     if (password !== '' && password === confirmPassword) {
       handleResetPassword();
     }
   };
+
+  useEffect(() => {
+    if (!token) {
+      handleToast('Token is invalid', 'error');
+      setTimeout(() => {
+        router.push('/auth/login');
+      }, 2000);
+    }
+  }, []);
+
   return (
     <AuthLayout>
       <motion.div
