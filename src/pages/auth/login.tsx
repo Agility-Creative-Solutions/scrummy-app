@@ -52,7 +52,7 @@ const LoginPage = () => {
     }
   };
 
-  const handleSubmit = async (e: React.ChangeEvent<HTMLInputElement>) => {
+  const handleSubmit = async (e: React.MouseEvent<HTMLAnchorElement>) => {
     e.preventDefault();
     setIsLoading(true);
     if (!emailValidation(email)) {
