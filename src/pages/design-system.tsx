@@ -66,7 +66,48 @@ const DesignSystem = () => {
             title="Clique Aqui"
           />
           <div>
-            <ActionBar />
+            <ActionBar
+              actions={[
+                {
+                  id: 'test1',
+                  icon: 'MdShoppingBag',
+                  label: 'Home',
+                  onClick: () => console.log('icon1'),
+                },
+                {
+                  id: 'test2',
+                  icon: 'MdPlayCircleOutline',
+                  label: 'Lobby',
+                  onClick: () => console.log('icon1'),
+                },
+                {
+                  id: 'test3',
+                  icon: 'MdPersonOutline',
+                  label: 'Users',
+                  onClick: () => console.log('icon1'),
+                },
+              ]}
+            />
+            <hr style={{ marginTop: 20, opacity: 0 }} />
+            <ActionBar
+              actions={[
+                {
+                  id: 'test1',
+                  icon: 'MdShoppingBag',
+                  onClick: () => console.log('icon1'),
+                },
+                {
+                  id: 'test3',
+                  icon: 'MdPersonOutline',
+                  onClick: () => console.log('icon1'),
+                },
+                {
+                  id: 'test2',
+                  icon: 'MdPlayCircleOutline',
+                  onClick: () => console.log('icon1'),
+                },
+              ]}
+            />
           </div>
         </div>
         <div>

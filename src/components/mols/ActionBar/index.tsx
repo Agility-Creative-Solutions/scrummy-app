@@ -1,11 +1,11 @@
 import { motion } from 'framer-motion';
 import { useState } from 'react';
 
-import { IconButton } from '@/components/atoms';
 import Card from '@/components/atoms/Card';
+import Icon from '@/components/atoms/Icon';
 
 export type ActionBarProps = {
-  actions?: [];
+  actions?: ActionType[];
   icon1?: string;
   icon2?: string;
   icon3?: string;
@@ -17,35 +17,18 @@ export type ActionBarProps = {
 type ActionType = {
   id: string;
   icon: string;
+  label?: string;
   onClick: (idx: number) => void;
 };
 
-const ActionBar: React.FC<ActionBarProps> = ({
-  actions = [
-    {
-      id: 'test1',
-      icon: 'MdShoppingBag',
-      onClick: () => console.log('icon1'),
-    },
-    {
-      id: 'test2',
-      icon: 'MdPlayCircleOutline',
-      onClick: () => console.log('icon1'),
-    },
-    {
-      id: 'test3',
-      icon: 'MdPersonOutline',
-      onClick: () => console.log('icon1'),
-    },
-  ],
-  buttonSize = 30,
-  iconSize,
-  color,
-}) => {
+const ActionBar: React.FC<ActionBarProps> = ({ actions, color }) => {
   const [itemActive, setItemActive] = useState(0);
 
+  if (!actions || !Array.isArray(actions) || actions.length === 0) {
+    return null;
+  }
+
   const childrenSelectorData: any = {};
-  const padding = 8;
   const gap = 24;
   const cardSize = 54;
 
@@ -58,33 +41,33 @@ const ActionBar: React.FC<ActionBarProps> = ({
     };
   }
 
-  if (!actions || !Array.isArray(actions) || actions.length === 0) {
-    return null;
-  }
-
   return (
-    <Card className="relative flex w-fit min-w-[220px] justify-around gap-x-6 rounded-xl p-2">
+    <Card className="relative flex min-h-[60px] w-fit min-w-[220px] justify-around gap-x-6 rounded-xl p-2">
       <motion.div
         animate={`variant${itemActive}`}
-        className="absolute top-2 h-14 w-14 rounded-lg bg-scrummyOrange-500"
-        style={{ left: padding }}
+        className="absolute top-1 h-[calc(100%-.5rem)] w-14 rounded-lg bg-scrummyOrange-500"
+        style={{ left: 4 }}
         transition={{ duration: 0.5 }}
         variants={childrenSelectorData}
       ></motion.div>
 
-      {actions.map(({ icon, onClick }: ActionType, idx) => {
+      {actions.map(({ icon, label, onClick }: ActionType, idx) => {
         return (
-          <motion.div className="relative flex" whileTap={{}} key={idx}>
-            <IconButton
-              icon={icon}
-              buttonSize={buttonSize}
-              iconSize={iconSize}
-              color={color}
-              onClick={() => {
-                setItemActive(idx);
-                onClick(idx);
-              }}
-            />
+          <motion.div
+            className="relative flex max-w-[70px] cursor-pointer flex-col items-center justify-center px-2"
+            whileTap={{}}
+            key={idx}
+            onClick={() => {
+              setItemActive(idx);
+              onClick(idx);
+            }}
+          >
+            <Icon iconName={icon} size="28" color={color} />
+            {label && (
+              <div>
+                <span className="text-xs font-bold uppercase">{label}</span>
+              </div>
+            )}
           </motion.div>
         );
       })}
