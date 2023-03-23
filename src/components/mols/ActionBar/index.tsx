@@ -1,9 +1,11 @@
 import { motion } from 'framer-motion';
+import { useState } from 'react';
 
 import { IconButton } from '@/components/atoms';
 import Card from '@/components/atoms/Card';
 
 export type ActionBarProps = {
+  actions?: [];
   icon1?: string;
   icon2?: string;
   icon3?: string;
@@ -12,56 +14,80 @@ export type ActionBarProps = {
   color?: string;
 };
 
+type ActionType = {
+  id: string;
+  icon: string;
+  onClick: (idx: number) => void;
+};
+
 const ActionBar: React.FC<ActionBarProps> = ({
-  icon1 = 'MdShoppingBag',
-  icon2 = 'MdPlayCircleOutline',
-  icon3 = 'MdPersonOutline',
+  actions = [
+    {
+      id: 'test1',
+      icon: 'MdShoppingBag',
+      onClick: () => console.log('icon1'),
+    },
+    {
+      id: 'test2',
+      icon: 'MdPlayCircleOutline',
+      onClick: () => console.log('icon1'),
+    },
+    {
+      id: 'test3',
+      icon: 'MdPersonOutline',
+      onClick: () => console.log('icon1'),
+    },
+  ],
   buttonSize = 30,
   iconSize,
   color,
 }) => {
-  const x = 132;
+  const [itemActive, setItemActive] = useState(0);
 
-  const child = {
-    variantA: { x: 0 },
-    variantB: { x: 132 },
-    variantC: { x: 264 },
-  };
+  const childrenSelectorData: any = {};
+  const padding = 8;
+  const gap = 24;
+  const cardSize = 54;
+
+  /* eslint no-plusplus: ["error", { "allowForLoopAfterthoughts": true }] */
+  for (let i = 0; i < actions.length; i++) {
+    const sizeContainer = i === 0 ? 0 : cardSize;
+
+    childrenSelectorData[`variant${i}`] = {
+      x: i * (sizeContainer + gap),
+    };
+  }
+
+  if (!actions || !Array.isArray(actions) || actions.length === 0) {
+    return null;
+  }
+
   return (
-    <Card className="relative flex h-[70px] w-80 justify-around">
+    <Card className="relative flex w-fit min-w-[220px] justify-around gap-x-6 rounded-xl p-2">
       <motion.div
-        className="absolute top-2 h-14 w-14 rounded-xl bg-scrummyOrange-500"
-        style={{ right: x }}
-        transition={{
-          type: 'tween',
-          duration: 4,
-        }}
-        variants={child}
+        animate={`variant${itemActive}`}
+        className="absolute top-2 h-14 w-14 rounded-lg bg-scrummyOrange-500"
+        style={{ left: padding }}
+        transition={{ duration: 0.5 }}
+        variants={childrenSelectorData}
       ></motion.div>
-      <motion.div className="relative" whileTap={{}}>
-        <IconButton
-          icon={icon1}
-          buttonSize={buttonSize}
-          iconSize={iconSize}
-          color={color}
-        ></IconButton>
-      </motion.div>
-      <motion.div className="relative" whileTap={{}}>
-        <IconButton
-          icon={icon2}
-          buttonSize={buttonSize}
-          iconSize={iconSize}
-          color={color}
-        ></IconButton>
-      </motion.div>
-      <motion.div className="relative" whileTap={{}}>
-        <IconButton
-          icon={icon3}
-          buttonSize={buttonSize}
-          iconSize={iconSize}
-          color={color}
-        ></IconButton>
-      </motion.div>
+
+      {actions.map(({ icon, onClick }: ActionType, idx) => {
+        return (
+          <motion.div className="relative flex" whileTap={{}} key={idx}>
+            <IconButton
+              icon={icon}
+              buttonSize={buttonSize}
+              iconSize={iconSize}
+              color={color}
+              onClick={() => {
+                setItemActive(idx);
+                onClick(idx);
+              }}
+            />
+          </motion.div>
+        );
+      })}
     </Card>
   );
 };
