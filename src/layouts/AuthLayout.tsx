@@ -1,8 +1,8 @@
-import { motion } from 'framer-motion';
 import type { ReactNode } from 'react';
 
 import LogoImg from '../../public/assets/images/scrummylogo.png';
 import LogoTitle from '../../public/assets/images/scrummytitle.png';
+import AnimatedCircles from './bin/AnimatedCircles';
 
 export type AuthLayoutProps = {
   children: ReactNode;
@@ -11,28 +11,7 @@ export type AuthLayoutProps = {
 const AuthLayout: React.FC<AuthLayoutProps> = ({ children }) => {
   return (
     <div className="relative flex h-[100vh] w-[100vw] flex-col justify-center overflow-hidden bg-scrummyOrange-500">
-      <motion.div
-        className="absolute left-[-20px] top-[-80px]  h-[80vw] max-h-[1100px] min-h-[700px] w-[80vw] min-w-[700px] max-w-[1100px] rounded-full border-[2px] border-slate-50/50 object-cover"
-        initial={{ scale: 1.0 }}
-        animate={{ scale: 1.05 }}
-        transition={{
-          type: 'tween',
-          duration: 4,
-          repeat: Infinity,
-          repeatType: 'reverse',
-        }}
-      ></motion.div>
-      <motion.div
-        className=" absolute left-[-100px] h-[60vw] max-h-[800px] min-h-[500px] w-[60vw] min-w-[500px] max-w-[800px] rounded-full border-[2px] border-slate-50/50 object-cover"
-        initial={{ scale: 1.0 }}
-        animate={{ scale: 1.05 }}
-        transition={{
-          type: 'tween',
-          duration: 4,
-          repeat: Infinity,
-          repeatType: 'reverse',
-        }}
-      ></motion.div>
+      <AnimatedCircles />
 
       <div>
         <div>
