@@ -4,6 +4,7 @@ import { useState } from 'react';
 import { Button, Input } from '@/components';
 import Card from '@/components/atoms/Card';
 import Modal from '@/components/atoms/Modal';
+import UserBar from '@/components/mols/UserBar';
 import type { TostifyType } from '@/hooks/useTostify';
 import { UseTostify } from '@/hooks/useTostify';
 
@@ -235,6 +236,10 @@ const DesignSystem = () => {
             </Card>
           </div>
         </div>
+        <div>
+          <UserBar />
+        </div>
+
         <div>
           <Button title="Open Modal" onClick={toggleModal} />
 
