@@ -106,7 +106,7 @@ const WelcomePage = () => {
             animate={cardChosen === CARDS_TYPE.join ? 'visible' : 'hidden'}
             transition={{ duration: 0.5 }}
             variants={TRANSITION_STATES.JOIN}
-            style={{ position: 'absolute', x: '100vh' }}
+            style={{ position: 'absolute', x: '100vh', opacity: 0 }}
           >
             <div className="flex">
               <Card
