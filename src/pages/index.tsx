@@ -6,6 +6,10 @@ import { Main } from '@/templates/Main';
 const Index = () => {
   const router = useRouter();
 
+  if (typeof window !== 'undefined') {
+    router.push('/design-system');
+  }
+
   return (
     <Main
       meta={

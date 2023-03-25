@@ -12,6 +12,7 @@ import IconButton from '../components/atoms/IconButton';
 import LinkButton from '../components/atoms/LinkButton';
 import ProgressBar from '../components/atoms/ProgressBar';
 import RadioButton from '../components/atoms/RadioButton';
+import ActionBar from '../components/mols/ActionBar';
 
 const DesignSystem = () => {
   const [checkboxOne, setCheckboxOne] = useState(false);
@@ -111,6 +112,50 @@ const DesignSystem = () => {
             textSize="normal"
             title="Clique Aqui"
           />
+          <div>
+            <ActionBar
+              actions={[
+                {
+                  id: 'test1',
+                  icon: 'MdShoppingBag',
+                  label: 'Home',
+                  onClick: () => console.log('icon1'),
+                },
+                {
+                  id: 'test2',
+                  icon: 'MdPlayCircleOutline',
+                  label: 'Lobby',
+                  onClick: () => console.log('icon1'),
+                },
+                {
+                  id: 'test3',
+                  icon: 'MdPersonOutline',
+                  label: 'Users',
+                  onClick: () => console.log('icon1'),
+                },
+              ]}
+            />
+            <hr style={{ marginTop: 20, opacity: 0 }} />
+            <ActionBar
+              actions={[
+                {
+                  id: 'test1',
+                  icon: 'MdShoppingBag',
+                  onClick: () => console.log('icon1'),
+                },
+                {
+                  id: 'test3',
+                  icon: 'MdPersonOutline',
+                  onClick: () => console.log('icon1'),
+                },
+                {
+                  id: 'test2',
+                  icon: 'MdPlayCircleOutline',
+                  onClick: () => console.log('icon1'),
+                },
+              ]}
+            />
+          </div>
         </div>
         <div>
           <h4>Buttons</h4>
