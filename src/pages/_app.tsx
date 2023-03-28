@@ -4,10 +4,14 @@ import 'react-toastify/dist/ReactToastify.css';
 import type { AppProps } from 'next/app';
 import { ToastContainer } from 'react-toastify';
 
+import { AuthProvider } from '@/contexts/AuthContext';
+
 const MyApp = ({ Component, pageProps }: AppProps) => (
   <>
-    <ToastContainer />
-    <Component {...pageProps} />
+    <AuthProvider>
+      <ToastContainer />
+      <Component {...pageProps} />
+    </AuthProvider>
   </>
 );
 

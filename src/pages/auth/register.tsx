@@ -9,7 +9,7 @@ import { UseTostify } from '@/hooks/useTostify';
 import AuthLayout from '@/layouts/AuthLayout';
 
 import LinkButton from '../../components/atoms/LinkButton';
-import UserService from '../../service/auth/service';
+import UserService from '../../service/auth';
 import {
   emailValidation,
   passwordValidation,
