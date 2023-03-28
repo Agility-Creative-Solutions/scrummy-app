@@ -7,6 +7,7 @@ import Card from '@/components/atoms/Card';
 import type { TostifyType } from '@/hooks/useTostify';
 import { UseTostify } from '@/hooks/useTostify';
 import AuthLayout from '@/layouts/AuthLayout';
+import { URLPaths } from '@/utils/URLPaths';
 
 import LinkButton from '../../components/atoms/LinkButton';
 import UserService from '../../service/auth';
@@ -39,8 +40,10 @@ const Register = () => {
     setEmailInvalid(false);
     setEmail(e.target.value);
   };
+
   const handleToast = (label: string, type?: TostifyType) =>
     UseTostify({ label, type });
+
   const handleRegister = async () => {
     try {
       const response = await UserService.register({
@@ -54,11 +57,10 @@ const Register = () => {
         return;
       }
       handleToast(
-        `Welcome to scrummy ${response.user.name}!!.
-      Verify your email account`,
+        `Welcome to scrummy ${response.user.name}!. Verify your email account`,
         'success'
       );
-      useRouter.push('/auth/dashboard');
+      useRouter.push(URLPaths.dashboard);
     } catch (error) {
       setIsLoading(false);
       handleToast('Oops. Something went wrong.', 'error');
