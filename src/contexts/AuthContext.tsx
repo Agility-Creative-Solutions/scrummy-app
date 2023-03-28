@@ -26,6 +26,7 @@ type AuthContextType = {
   isLoggedIn: boolean;
   userData: User | null;
   signIn: (data: SignInData) => Promise<void>;
+  localSignIn: (user: User) => void;
 };
 
 export const AuthContext = createContext({} as AuthContextType);
@@ -48,6 +49,14 @@ export const AuthProvider = ({ children }: any) => {
     }
   }, []);
 
+  const localSignIn = (user: User) => {
+    setUserData(user);
+    setCookie(undefined, 'scrummypoker.token', user.tokens?.access?.token, {
+      maxAge: 60 * 60 * 1, // 1 hour
+    });
+    Router.push(URLPaths.dashboard);
+  };
+
   const signIn = async ({ email, password }: SignInData) => {
     const { user, tokens } = await UserService.login({ email, password });
 
@@ -55,15 +64,11 @@ export const AuthProvider = ({ children }: any) => {
       throw new Error('User not found');
     }
 
-    setUserData(user);
-    setCookie(undefined, 'scrummypoker.token', tokens?.access?.token, {
-      maxAge: 60 * 60 * 1, // 1 hour
-    });
-    Router.push(URLPaths.dashboard);
+    localSignIn({ ...user, tokens });
   };
 
   return (
-    <AuthContext.Provider value={{ isLoggedIn, userData, signIn }}>
+    <AuthContext.Provider value={{ isLoggedIn, userData, signIn, localSignIn }}>
       {children}
     </AuthContext.Provider>
   );

@@ -13,8 +13,13 @@ export const apiFectch = async (url: string, options: any) => {
     headers: {
       ...options?.headers,
       'Content-Type': 'application/json',
-      Authorization: options?.headers?.Authorization || `Bearer ${token}`,
+      ...(token
+        ? {
+            Authorization: options?.headers?.Authorization || `Bearer ${token}`,
+          }
+        : {}),
     },
   });
+
   return response.json();
 };

@@ -4,58 +4,33 @@ import { apiFectch } from './api.service';
 
 const { API_URL } = config;
 
-const POST = async (path: string, data: any) => {
-  const API_ENDPOINT = `${API_URL}${path}`;
-
-  const response = await apiFectch(API_ENDPOINT, {
+const POST = async (path: string, data: any) =>
+  apiFectch(`${API_URL}${path}`, {
     method: 'POST',
     body: JSON.stringify(data),
   });
 
-  return response.json();
-};
-
-const DELETE = async (path: string) => {
-  const API_ENDPOINT = `${API_URL}${path}`;
-
-  const response = await apiFectch(API_ENDPOINT, {
+const DELETE = async (path: string) =>
+  apiFectch(`${API_URL}${path}`, {
     method: 'DELETE',
   });
 
-  return response.json();
-};
-
-const GET = async (path: string) => {
-  const API_ENDPOINT = `${API_URL}${path}`;
-
-  const response = await apiFectch(API_ENDPOINT, {
+const GET = async (path: string) =>
+  apiFectch(`${API_URL}${path}`, {
     method: 'GET',
   });
 
-  return response.json();
-};
-
-const PUT = async (path: string, data: any) => {
-  const API_ENDPOINT = `${API_URL}${path}`;
-
-  const response = await apiFectch(API_ENDPOINT, {
+const PUT = async (path: string, data: any) =>
+  apiFectch(`${API_URL}${path}`, {
     method: 'PUT',
     body: JSON.stringify(data),
   });
 
-  return response.json();
-};
-
-const PATCH = async (path: string, data: any) => {
-  const API_ENDPOINT = `${API_URL}${path}`;
-
-  const response = await apiFectch(API_ENDPOINT, {
+const PATCH = async (path: string, data: any) =>
+  apiFectch(`${API_URL}${path}`, {
     method: 'PATCH',
     body: JSON.stringify(data),
   });
-
-  return response.json();
-};
 
 export default {
   POST,
