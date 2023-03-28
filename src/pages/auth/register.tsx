@@ -1,4 +1,5 @@
 import { motion } from 'framer-motion';
+import { signIn } from 'next-auth/react';
 import { useContext, useState } from 'react';
 
 import { Button, Input } from '@/components';
@@ -173,9 +174,10 @@ const Register = () => {
             >
               <Button
                 isLoading={isLoading}
-                buttonType="pink"
+                buttonType="glass"
                 fullWidth={true}
-                title={'Sign Up with Google'}
+                title={'Sign Up with Github'}
+                onClick={() => signIn('github')}
               ></Button>
             </motion.div>
           </div>
