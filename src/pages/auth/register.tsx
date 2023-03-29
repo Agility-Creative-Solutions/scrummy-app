@@ -1,15 +1,16 @@
 import { motion } from 'framer-motion';
-import useRouter from 'next/router';
-import { useState } from 'react';
+import { signIn } from 'next-auth/react';
+import { useContext, useState } from 'react';
 
 import { Button, Input } from '@/components';
 import Card from '@/components/atoms/Card';
+import { AuthContext } from '@/contexts/AuthContext';
 import type { TostifyType } from '@/hooks/useTostify';
 import { UseTostify } from '@/hooks/useTostify';
 import AuthLayout from '@/layouts/AuthLayout';
 
 import LinkButton from '../../components/atoms/LinkButton';
-import UserService from '../../service/auth/service';
+import UserService from '../../service/auth';
 import {
   emailValidation,
   passwordValidation,
@@ -17,6 +18,7 @@ import {
 } from '../../utils/auth';
 
 const Register = () => {
+  const { localSignIn } = useContext(AuthContext);
   const [name, setName] = useState('');
   const [userNameInvalid, setUserNameInvalid] = useState(false);
   const [isLoading, setIsLoading] = useState(false);
@@ -39,26 +41,25 @@ const Register = () => {
     setEmailInvalid(false);
     setEmail(e.target.value);
   };
+
   const handleToast = (label: string, type?: TostifyType) =>
     UseTostify({ label, type });
+
   const handleRegister = async () => {
     try {
-      const response = await UserService.register({
+      const { user, tokens } = await UserService.register({
         name,
         email,
         password,
       });
+
       setIsLoading(false);
-      if (!response.user) {
+      if (!user) {
         handleToast('Email already taken.', 'warning');
         return;
       }
-      handleToast(
-        `Welcome to scrummy ${response.user.name}!!.
-      Verify your email account`,
-        'success'
-      );
-      useRouter.push('/auth/dashboard');
+      handleToast(`Welcome to scrummy ${user.name}!`, 'success');
+      localSignIn({ ...user, tokens });
     } catch (error) {
       setIsLoading(false);
       handleToast('Oops. Something went wrong.', 'error');
@@ -173,9 +174,10 @@ const Register = () => {
             >
               <Button
                 isLoading={isLoading}
-                buttonType="pink"
+                buttonType="glass"
                 fullWidth={true}
-                title={'Sign Up with Google'}
+                title={'Sign Up with Github'}
+                onClick={() => signIn('github')}
               ></Button>
             </motion.div>
           </div>

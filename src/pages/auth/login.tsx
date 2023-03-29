@@ -1,26 +1,31 @@
 import { motion } from 'framer-motion';
-import useRouter from 'next/router';
-import { useState } from 'react';
+import Router from 'next/router';
+import { useContext, useEffect, useState } from 'react';
 
 import { Button, Input } from '@/components';
 import Card from '@/components/atoms/Card';
+import { AuthContext } from '@/contexts/AuthContext';
 import type { TostifyType } from '@/hooks/useTostify';
 import { UseTostify } from '@/hooks/useTostify';
 import AuthLayout from '@/layouts/AuthLayout';
+import { URLPaths } from '@/utils/URLPaths';
 
 import LinkButton from '../../components/atoms/LinkButton';
-import UserService from '../../service/auth/service';
 import { emailValidation, passwordValidation } from '../../utils/auth';
 
 const LoginPage = () => {
+  const { signIn, userData } = useContext(AuthContext);
+
   const [email, setEmail] = useState('');
   const [emailInvalid, setEmailInvalid] = useState(false);
   const [passwordInvalid, setPasswordInvalid] = useState(false);
   const [password, setPassword] = useState('');
   const [isLoading, setIsLoading] = useState(false);
+
   const handleToast = (label: string, type?: TostifyType) => {
     UseTostify({ label, type });
   };
+
   const passwordChange = (e: any) => {
     setPasswordInvalid(false);
     setPassword(e.target.value);
@@ -30,22 +35,10 @@ const LoginPage = () => {
     setEmailInvalid(false);
     setEmail(e.target.value);
   };
+
   const handleLogin = async () => {
     try {
-      const response = await UserService.login({ email, password });
-      setIsLoading(false);
-      setEmailInvalid(false);
-      setPasswordInvalid(false);
-      if (!response.user) {
-        setEmailInvalid(true);
-        setPasswordInvalid(true);
-        return;
-      }
-      if (response.user.isEmailVerified === false) {
-        handleToast('You must verify your email account.', 'warning');
-      } else {
-        useRouter.push('/auth/dashboard');
-      }
+      await signIn({ email, password });
     } catch (error) {
       setIsLoading(false);
       handleToast('Oops. Something went wrong', 'error');
@@ -55,12 +48,15 @@ const LoginPage = () => {
   const handleSubmit = async (e: React.ChangeEvent<HTMLInputElement>) => {
     e.preventDefault();
     setIsLoading(true);
+
     if (!emailValidation(email)) {
       setEmailInvalid(true);
       setPasswordInvalid(true);
       setIsLoading(false);
+
       return false;
     }
+
     if (!passwordValidation(password)) {
       setPasswordInvalid(true);
       setIsLoading(false);
@@ -68,10 +64,19 @@ const LoginPage = () => {
         'Password must have min 8 characters with 1 letter and 1 number',
         'warning'
       );
+
       return false;
     }
+
+    setEmailInvalid(false);
+    setPasswordInvalid(false);
     return handleLogin();
   };
+
+  useEffect(() => {
+    if (userData) Router.push(URLPaths.dashboard);
+  }, [userData]);
+
   return (
     <AuthLayout>
       <motion.div

@@ -1,74 +1,36 @@
 import config from '@/config/config';
 
+import { apiFectch } from './api.service';
+
 const { API_URL } = config;
 
-const POST = async (path: string, data: any, authorization?: string) => {
-  const API_ENDPOINT = `${API_URL}${path}`;
-
-  const response = await fetch(API_ENDPOINT, {
+const POST = async (path: string, data: any) =>
+  apiFectch(`${API_URL}${path}`, {
     method: 'POST',
-    headers: {
-      'Content-Type': 'application/json',
-      Authorization: `Bearer ${authorization ?? ''}`,
-    },
     body: JSON.stringify(data),
   });
-  return response.json();
-};
 
-const DELETE = async (path: string, authorization?: string) => {
-  const API_ENDPOINT = `${API_URL}${path}`;
-
-  const response = await fetch(API_ENDPOINT, {
+const DELETE = async (path: string) =>
+  apiFectch(`${API_URL}${path}`, {
     method: 'DELETE',
-    headers: {
-      'Content-Type': 'application/json',
-      Authorization: `Bearer ${authorization ?? ''}`,
-    },
   });
-  return response.json();
-};
 
-const GET = async (path: string, authorization?: string) => {
-  const API_ENDPOINT = `${API_URL}${path}`;
-
-  const response = await fetch(API_ENDPOINT, {
+const GET = async (path: string) =>
+  apiFectch(`${API_URL}${path}`, {
     method: 'GET',
-    headers: {
-      'Content-Type': 'application/json',
-      Authorization: `Bearer ${authorization ?? ''}`,
-    },
   });
-  return response.json();
-};
 
-const PUT = async (path: string, data: any, authorization?: string) => {
-  const API_ENDPOINT = `${API_URL}${path}`;
-
-  const response = await fetch(API_ENDPOINT, {
+const PUT = async (path: string, data: any) =>
+  apiFectch(`${API_URL}${path}`, {
     method: 'PUT',
-    headers: {
-      'Content-Type': 'application/json',
-      Authorization: `Bearer ${authorization ?? ''}`,
-    },
     body: JSON.stringify(data),
   });
-  return response.json();
-};
 
-const PATCH = async (path: string, data: any, authorization?: string) => {
-  const API_ENDPOINT = `${API_URL}${path}`;
-
-  const response = await fetch(API_ENDPOINT, {
+const PATCH = async (path: string, data: any) =>
+  apiFectch(`${API_URL}${path}`, {
     method: 'PATCH',
-    headers: {
-      'Content-Type': 'application/json',
-      Authorization: `Bearer ${authorization ?? ''}`,
-    },
     body: JSON.stringify(data),
   });
-  return response.json();
-};
 
 export default {
   POST,
