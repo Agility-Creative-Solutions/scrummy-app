@@ -12,9 +12,12 @@ import LinkButton from '../../components/atoms/LinkButton';
 import UserService from '../../service/auth/service';
 import { passwordValidation } from '../../utils/auth';
 
-const ResetPasswordPage = () => {
+type Props = {
+  token?: string;
+};
+
+const ResetPasswordPage = ({ token }: Props) => {
   const router = useRouter();
-  const { token } = router.query;
 
   const [confirmPassword, setConfirmPassword] = useState('');
   const [passwordInvalid, setPasswordInvalid] = useState(false);
@@ -95,7 +98,7 @@ const ResetPasswordPage = () => {
         router.push('/auth/login');
       }, 2000);
     }
-  }, []);
+  }, [router, token]);
 
   return (
     <AuthLayout>
@@ -181,6 +184,12 @@ const ResetPasswordPage = () => {
       </motion.div>
     </AuthLayout>
   );
+};
+
+ResetPasswordPage.getInitialProps = async ({ query }: any) => {
+  const { token } = query;
+
+  return { token };
 };
 
 export default ResetPasswordPage;
