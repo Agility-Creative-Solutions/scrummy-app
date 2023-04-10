@@ -4,6 +4,7 @@ import { useState } from 'react';
 import { Button, Input } from '@/components';
 import Card from '@/components/atoms/Card';
 import Modal from '@/components/atoms/Modal';
+import SquadMember from '@/components/mols/SquadMembers';
 import UserBar from '@/components/mols/UserBar';
 import type { TostifyType } from '@/hooks/useTostify';
 import { UseTostify } from '@/hooks/useTostify';
@@ -255,6 +256,9 @@ const DesignSystem = () => {
               </Modal>
             )}
           </AnimatePresence>
+        </div>
+        <div>
+          <SquadMember></SquadMember>
         </div>
       </div>
     </div>
