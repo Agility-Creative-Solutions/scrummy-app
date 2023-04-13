@@ -264,7 +264,28 @@ const DesignSystem = () => {
           </AnimatePresence>
         </div>
         <div>
-          <SquadMember></SquadMember>
+          <SquadMember
+            users={[
+              {
+                userName: 'Felipe',
+                medal: 'Bronze1',
+                avatar: 'avatar',
+                joinedAt: '3 months',
+              },
+              {
+                userName: 'Renan',
+                medal: 'Gold3',
+                avatar: 'renan_avatar',
+                joinedAt: '2 years',
+              },
+              {
+                userName: 'Pedro',
+                medal: 'Gold3',
+                avatar: 'pedro_avatar',
+                joinedAt: '1 year',
+              },
+            ]}
+          ></SquadMember>
         </div>
       </div>
     </div>
