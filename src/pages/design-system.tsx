@@ -238,7 +238,7 @@ const DesignSystem = () => {
         </div>
         <div>
           <UserBar
-            id="Fernando A"
+            userName="Fernando A"
             avatar="test1"
             medal="Silver2"
             joinedAt="2 days"

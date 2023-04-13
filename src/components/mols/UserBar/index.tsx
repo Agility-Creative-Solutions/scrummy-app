@@ -13,7 +13,7 @@ type BadgeProps = {
 };
 
 export type UserBarProps = {
-  id: string;
+  userName: string;
   avatar: string;
   joinedAt?: string;
   welcome?: boolean;
@@ -37,15 +37,8 @@ const BarBadge = ({ value, icon }: BadgeProps) => {
     </div>
   );
 };
-const MenuToggle = (component: any, setcomponent: any) => {
-  if (component === false) {
-    setcomponent(true);
-  } else {
-    setcomponent(false);
-  }
-};
 const UserBar: React.FC<UserBarProps> = ({
-  id,
+  userName,
   avatar,
   welcome = false,
   joinedAt,
@@ -58,7 +51,7 @@ const UserBar: React.FC<UserBarProps> = ({
   return (
     <div
       className="relative flex w-full flex-row items-center gap-2 rounded-xl bg-slate-600 p-2 text-black"
-      onClick={() => MenuToggle(menuOpen, setMenuOpen)}
+      onClick={() => setMenuOpen(!menuOpen)}
     >
       {menuOpen && (
         <div className="absolute top-0 right-0 flex h-auto w-auto flex-col gap-2.5 rounded-xl bg-white p-2">
@@ -83,7 +76,7 @@ const UserBar: React.FC<UserBarProps> = ({
           <Typography className="text-xs italic">Welcome!</Typography>
         )}
         <Typography variant="h5" className="text-xl">
-          {id}
+          {userName}
         </Typography>
         {joinedAt && (
           <Typography className="pb-2 text-xs italic">{`Joined ${joinedAt} ago `}</Typography>
