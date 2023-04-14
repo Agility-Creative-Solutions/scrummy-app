@@ -50,7 +50,7 @@ const UserBar: React.FC<UserBarProps> = ({
   const [medalRank, setMedalRank] = useState(false);
   return (
     <div
-      className="relative flex w-full flex-row items-center gap-2 rounded-xl bg-slate-600 p-2 text-black"
+      className="relative flex w-full max-w-sm flex-row items-center gap-2 rounded-xl p-2 text-black"
       onClick={() => setMenuOpen(!menuOpen)}
     >
       {menuOpen && (
@@ -75,11 +75,11 @@ const UserBar: React.FC<UserBarProps> = ({
         {welcome && (
           <Typography className="text-xs italic">Welcome!</Typography>
         )}
-        <Typography variant="h5" className="text-xl">
+        <Typography variant="h5" className="text-xl text-white">
           {userName}
         </Typography>
         {joinedAt && (
-          <Typography className="pb-2 text-xs italic">{`Joined ${joinedAt} ago `}</Typography>
+          <Typography className="pb-2 text-xs italic text-white">{`Joined ${joinedAt} ago `}</Typography>
         )}
         <div className="flex flex-row items-center gap-4">
           <div
@@ -125,7 +125,7 @@ const UserBar: React.FC<UserBarProps> = ({
           )}
           {!welcome && (
             <>
-              <div>
+              <div className="text-white">
                 <BarBadge value="392" icon={IconCards.src} />
                 {cardsChosenOpen && (
                   <div className="absolute bottom-5 flex gap-2 rounded-xl bg-white p-4 text-scrummyOrange-500">
@@ -134,7 +134,7 @@ const UserBar: React.FC<UserBarProps> = ({
                   </div>
                 )}
               </div>
-              <div>
+              <div className="text-white">
                 <BarBadge value="29" icon={IconSprints.src} />
                 {sprintsPlanned && (
                   <div className="absolute bottom-5 flex gap-2 rounded-xl bg-white p-4 text-scrummyOrange-500">
