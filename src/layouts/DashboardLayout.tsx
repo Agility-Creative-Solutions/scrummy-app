@@ -30,13 +30,13 @@ const DashboardLayout: React.FC<DashboardLayoutProps> = ({ children }) => {
                 id: 'test2',
                 icon: 'MdPlayCircleOutline',
                 label: 'Lobby',
-                onClick: () => console.log('icon1'),
+                onClick: () => console.log('icon2'),
               },
               {
                 id: 'test3',
                 icon: 'MdPersonOutline',
                 label: 'Users',
-                onClick: () => console.log('icon1'),
+                onClick: () => console.log('icon3'),
               },
             ]}
           />

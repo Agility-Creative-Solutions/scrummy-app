@@ -48,10 +48,15 @@ const UserBar: React.FC<UserBarProps> = ({
   const [cardsChosenOpen, setCardsChosenOpen] = useState(false);
   const [sprintsPlanned, setSprintsPlanned] = useState(false);
   const [medalRank, setMedalRank] = useState(false);
+  const menuCheck = () => {
+    if (welcome === false) setMenuOpen(!menuOpen);
+  };
+
   return (
     <div
       className="relative flex w-full max-w-sm flex-row items-center gap-2 rounded-xl p-2 text-black"
-      onClick={() => setMenuOpen(!menuOpen)}
+      onClick={() => menuCheck()}
+      onMouseLeave={() => setMenuOpen(false)}
     >
       {menuOpen && (
         <div className="absolute top-0 right-0 flex h-auto w-auto flex-col gap-2.5 rounded-xl bg-white p-2">
