@@ -4,6 +4,7 @@ import { useState } from 'react';
 import { Button, Input } from '@/components';
 import Card from '@/components/atoms/Card';
 import Modal from '@/components/atoms/Modal';
+import SquadMember from '@/components/mols/SquadMembers';
 import UserBar from '@/components/mols/UserBar';
 import type { TostifyType } from '@/hooks/useTostify';
 import { UseTostify } from '@/hooks/useTostify';
@@ -261,6 +262,30 @@ const DesignSystem = () => {
               </Modal>
             )}
           </AnimatePresence>
+        </div>
+        <div>
+          <SquadMember
+            users={[
+              {
+                userName: 'Felipe',
+                medal: 'Bronze1',
+                avatar: 'avatar',
+                joinedAt: '3 months',
+              },
+              {
+                userName: 'Renan',
+                medal: 'Gold3',
+                avatar: 'renan_avatar',
+                joinedAt: '2 years',
+              },
+              {
+                userName: 'Pedro',
+                medal: 'Gold3',
+                avatar: 'pedro_avatar',
+                joinedAt: '1 year',
+              },
+            ]}
+          ></SquadMember>
         </div>
       </div>
     </div>
