@@ -48,10 +48,15 @@ const UserBar: React.FC<UserBarProps> = ({
   const [cardsChosenOpen, setCardsChosenOpen] = useState(false);
   const [sprintsPlanned, setSprintsPlanned] = useState(false);
   const [medalRank, setMedalRank] = useState(false);
+  const menuCheck = () => {
+    if (welcome === false) setMenuOpen(!menuOpen);
+  };
+
   return (
     <div
       className="relative flex w-full max-w-sm flex-row items-center gap-2 rounded-xl p-2 text-black"
-      onClick={() => setMenuOpen(!menuOpen)}
+      onClick={() => menuCheck()}
+      onMouseLeave={() => setMenuOpen(false)}
     >
       {menuOpen && (
         <div className="absolute top-0 right-0 flex h-auto w-auto flex-col gap-2.5 rounded-xl bg-white p-2">
@@ -73,7 +78,9 @@ const UserBar: React.FC<UserBarProps> = ({
       </div>
       <div className="flex flex-col">
         {welcome && (
-          <Typography className="text-xs italic">Welcome!</Typography>
+          <Typography className="text-xs italic text-white">
+            Welcome!
+          </Typography>
         )}
         <Typography variant="h5" className="text-xl text-white">
           {userName}
@@ -82,24 +89,25 @@ const UserBar: React.FC<UserBarProps> = ({
           <Typography className="pb-2 text-xs italic text-white">{`Joined ${joinedAt} ago `}</Typography>
         )}
         <div className="flex flex-row items-center gap-4">
-          <div
-            onMouseEnter={() => setMedalRank(true)}
-            onMouseLeave={() => setMedalRank(false)}
-          >
-            <MedalsIcons medal={medal}>
-              {medalRank && (
-                <div className="absolute bottom-5 flex gap-2 rounded-xl bg-white p-4 text-scrummyOrange-500">
-                  {medal}
-                  <div className="absolute bottom-[-1px] left-2 h-5 w-5 rotate-45 rounded-tl-lg bg-white"></div>
-                </div>
-              )}
-            </MedalsIcons>
-          </div>
           {welcome && (
             <>
               <div
+                onMouseEnter={() => setMedalRank(true)}
+                onMouseLeave={() => setMedalRank(false)}
+              >
+                <MedalsIcons medal={medal}>
+                  {medalRank && (
+                    <div className="absolute bottom-5 flex gap-2 rounded-xl bg-white p-4 text-scrummyOrange-500">
+                      {medal}
+                      <div className="absolute bottom-[-1px] left-2 h-5 w-5 rotate-45 rounded-tl-lg bg-white"></div>
+                    </div>
+                  )}
+                </MedalsIcons>
+              </div>
+              <div
                 onMouseEnter={() => setCardsChosenOpen(true)}
                 onMouseLeave={() => setCardsChosenOpen(false)}
+                className="text-white"
               >
                 <BarBadge value="392" icon={IconCards.src} />
                 {cardsChosenOpen && (
@@ -112,6 +120,7 @@ const UserBar: React.FC<UserBarProps> = ({
               <div
                 onMouseEnter={() => setSprintsPlanned(true)}
                 onMouseLeave={() => setSprintsPlanned(false)}
+                className="text-white"
               >
                 <BarBadge value="29" icon={IconSprints.src} />
                 {sprintsPlanned && (
@@ -125,6 +134,16 @@ const UserBar: React.FC<UserBarProps> = ({
           )}
           {!welcome && (
             <>
+              <div>
+                <MedalsIcons medal={medal}>
+                  {medalRank && (
+                    <div className="absolute bottom-5 flex gap-2 rounded-xl bg-white p-4 text-scrummyOrange-500">
+                      {medal}
+                      <div className="absolute bottom-[-1px] left-2 h-5 w-5 rotate-45 rounded-tl-lg bg-white"></div>
+                    </div>
+                  )}
+                </MedalsIcons>
+              </div>
               <div className="text-white">
                 <BarBadge value="392" icon={IconCards.src} />
                 {cardsChosenOpen && (
