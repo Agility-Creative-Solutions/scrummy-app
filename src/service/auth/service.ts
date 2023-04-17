@@ -1,4 +1,8 @@
-import type { LogInType, RegisterAccountType } from '../../types/auth/login';
+import type {
+  LogInType,
+  RegisterAccountType,
+  ResetPassword,
+} from '../../types/auth/login';
 import http from '../http.service';
 
 const UserService = {
@@ -8,6 +12,10 @@ const UserService = {
   },
   register: async (data: RegisterAccountType) => {
     const response = await http.POST('/auth/register', data);
+    return response;
+  },
+  resetPassword: async (data: ResetPassword, token?: string) => {
+    const response = await http.PATCH(`/auth/reset-password/${token}`, data);
     return response;
   },
 };

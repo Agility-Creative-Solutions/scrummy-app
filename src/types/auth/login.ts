@@ -12,3 +12,7 @@ export interface RegisterAccountType {
 export interface ForgetPasswordType {
   email: string;
 }
+export interface ResetPassword {
+  password: string;
+  confirmPassword: string;
+}

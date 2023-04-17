@@ -32,7 +32,7 @@ const Input: React.FC<InputProps> = ({
   errorIcon = false,
 }) => {
   return (
-    <div className="my-7">
+    <div className="my-5">
       <div
         className={cx(
           'relative h-14 flex rounded-lg border-[1px] bg-dark-100 pl-5',

@@ -10,6 +10,7 @@ const ForgotPassword: React.FC = () => {
   const [userEmail, setUserEmail] = useState('');
   const [emailInvalid, setEmailInvalid] = useState(false);
   const [isLoading, setIsLoading] = useState(false);
+  const [emailSent, setEmailSent] = useState(false);
 
   const validateEmail = (email: string) => {
     const re =
@@ -22,7 +23,7 @@ const ForgotPassword: React.FC = () => {
     setUserEmail(e.target.value);
   };
 
-  const handleSubmit = async (e: any) => {
+  const handleSubmit = async (e: React.MouseEvent<HTMLAnchorElement>) => {
     e.preventDefault();
 
     setIsLoading(true);
@@ -43,6 +44,7 @@ const ForgotPassword: React.FC = () => {
             type: 'success',
             label: 'Email sent successfully',
           });
+          setEmailSent(true);
         })
         .catch(() => {
           setEmailInvalid(true);
@@ -68,7 +70,7 @@ const ForgotPassword: React.FC = () => {
                 create your new password.
               </p>
             </div>
-            <form onSubmit={handleSubmit}>
+            <form>
               <motion.div
                 initial={{ opacity: 0 }}
                 animate={{ opacity: 1 }}
@@ -97,7 +99,8 @@ const ForgotPassword: React.FC = () => {
                 onClick={handleSubmit}
                 buttonType="success"
                 fullWidth={true}
-                title={'Request new password'}
+                disabled={emailSent}
+                title={emailSent ? 'Request sent!' : 'Request new password'}
                 isLoading={isLoading}
               ></Button>
             </motion.div>

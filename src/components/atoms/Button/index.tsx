@@ -11,11 +11,12 @@ export type ButtonProps = {
   isLoading?: boolean;
   fullWidth?: boolean;
   disabled?: boolean;
-  onClick?: (e: any) => void;
+  onClick?: (e: React.MouseEvent<HTMLAnchorElement>) => void;
   buttonType?: 'primary' | 'pink' | 'success' | 'warning' | 'danger' | 'glass';
 };
 
 const Button: React.FC<ButtonProps> = ({
+  disabled,
   href,
   icon,
   title,
@@ -24,6 +25,10 @@ const Button: React.FC<ButtonProps> = ({
   fullWidth,
   buttonType,
 }) => {
+  const handleButtonClick = (e: React.MouseEvent<HTMLAnchorElement>) => {
+    if (!disabled && onClick) onClick(e);
+  };
+
   return (
     <a
       className={cx(
@@ -34,12 +39,13 @@ const Button: React.FC<ButtonProps> = ({
           'bg-scrummyGreen-500 text-white': buttonType === 'success',
           'bg-scrummyYellow-500 text-white': buttonType === 'warning',
           'bg-scrummyRed-500 text-white': buttonType === 'danger',
+          'bg-gray-500 text-white opacity-30 cursor-not-allowed': disabled,
           'bg-transparent text-black active:shadow-lg': buttonType === 'glass',
           'w-full': fullWidth,
           'w-fit': !fullWidth,
         }
       )}
-      onClick={onClick}
+      onClick={handleButtonClick}
       href={href}
     >
       {isLoading ? (
