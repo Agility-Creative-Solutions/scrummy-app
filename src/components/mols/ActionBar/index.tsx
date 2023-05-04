@@ -42,7 +42,7 @@ const ActionBar: React.FC<ActionBarProps> = ({ actions, color }) => {
   }
 
   return (
-    <Card className="relative flex min-h-[60px] w-fit min-w-[220px] justify-around gap-x-6 rounded-xl p-2">
+    <Card className="relative mx-auto flex min-h-[60px] w-fit min-w-[220px] justify-around gap-x-6 rounded-xl p-2">
       <motion.div
         animate={`variant${itemActive}`}
         className="absolute top-1 h-[calc(100%-.5rem)] w-14 rounded-lg bg-scrummyOrange-500"

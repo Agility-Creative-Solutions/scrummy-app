@@ -24,7 +24,7 @@ const Card: React.FC<CardProps> = ({
     >
       {(!!title || !!subtitle) && (
         <div className="pb-5">
-          {title && <h4>{title}</h4>}
+          {title && <h4 className="font-semibold">{title}</h4>}
           {subtitle && <p>{subtitle}</p>}
         </div>
       )}
