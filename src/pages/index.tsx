@@ -6,6 +6,10 @@ import { Main } from '@/templates/Main';
 const Index = () => {
   const router = useRouter();
 
+  if (typeof window !== 'undefined') {
+    router.push('/design-system');
+  }
+
   return (
     <Main
       meta={
@@ -21,7 +25,7 @@ const Index = () => {
           alt="Nextjs starter banner"
         />
       </a>
-      <h1 className="text-2xl font-bold text-scrummyOrange">
+      <h1 className="text-2xl font-bold text-scrummyOrange-500">
         Boilerplate code for your Nextjs project with Tailwind CSS
       </h1>
       <p>
